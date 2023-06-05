@@ -1,0 +1,23 @@
+#1 ---- Prevent listing
+
+IndexIgnore *
+Options -Indexes
+
+#2 ---- Without extension
+
+Options +MultiViews
+
+#3 ---- Rewrites
+
+RewriteEngine On
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^dokumente/01/(\d+)$ dokumente/schreiben.php?dok=$1 [L]
+RewriteRule ^dokumente/02/(\d+)$ dokumente/urkunde.php?dok=$1 [L]
+RewriteRule ^dokumente/03/(\d+)$ dokumente/zertifikat.php?dok=$1 [L]
+RewriteRule ^admin/antraege/antrag/(\d+)$ admin/antraege/t-view.php?antrag=$1 [L]
+RewriteRule ^admin/cirs/fall/(\d+)$ admin/cirs/t-view.php?case=$1 [L]
+RewriteRule ^admin/edivi/protokoll/(\d+)$ admin/edivi/view.php?id=$1 [L]
+RewriteRule ^admin/users/(\d+)$ admin/users/edit.php?id=$1 [L]
+RewriteRule ^admin/personal/(\d+)$ admin/personal/profile.php?id=$1 [L]
