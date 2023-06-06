@@ -119,3 +119,7 @@
   bottom: 3%;
   z-index: 9999;
 }
+
+[data-bs-theme=dark] .container.shadow.rounded-3 {
+  background-color: var(--sh-darkgray) !important;
+}

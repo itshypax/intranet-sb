@@ -42,6 +42,7 @@ $row = mysqli_fetch_array($result);
     <meta property="og:title" content="Intranet - Hansestadt Stettbeck" />
     <meta property="og:image" content="https://stettbeck.de/assets/img/STETTBECK_1.png" />
     <meta property="og:description" content="Intranet/Verwaltungsportal der Hansestadt Stettbeck" />
+    <script src="/assets/js/darkmode.js"></script>
 </head>
 
 <body>
@@ -429,6 +430,9 @@ $row = mysqli_fetch_array($result);
             <div class="col"></div>
         </div>
     </div>
+    <button onclick="toggleDarkMode()" class="btn btn-secondary" id="darkmode-switch">
+        <i id="darkModeIcon" class="fas"></i> Lichtschalter
+    </button>
 </body>
 
 </html>

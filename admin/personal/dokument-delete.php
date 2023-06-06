@@ -35,6 +35,9 @@ header('Location: /admin/personal/' . $pid)
 
 <body>
 
+    <button onclick="toggleDarkMode()" class="btn btn-secondary" id="darkmode-switch">
+        <i id="darkModeIcon" class="fas"></i> Lichtschalter
+    </button>
 </body>
 
 </html>

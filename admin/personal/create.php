@@ -88,6 +88,7 @@ if (isset($_POST['new'])) {
     <meta property="og:title" content="Intranet - Hansestadt Stettbeck" />
     <meta property="og:image" content="https://stettbeck.de/assets/img/STETTBECK_1.png" />
     <meta property="og:description" content="Intranet/Verwaltungsportal der Hansestadt Stettbeck" />
+    <script src="/assets/js/darkmode.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
@@ -399,6 +400,9 @@ if (isset($_POST['new'])) {
                 }, 500); // Delay in milliseconds (adjust as needed)
             }
         </script>
+        <button onclick="toggleDarkMode()" class="btn btn-secondary" id="darkmode-switch">
+            <i id="darkModeIcon" class="fas"></i> Lichtschalter
+        </button>
 </body>
 
 </html>
