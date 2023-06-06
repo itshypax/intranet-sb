@@ -194,7 +194,7 @@
 <!-- MODAL ENDE -->
 
 <!-- MODAL -->
-<?php if (in_array('full_admin', $_SESSION['permissions']) || in_array('admin', $_SESSION['permissions']) || in_array('admin', $_SESSION['personal_delete'])) { ?>
+<?php if ($admincheck || $perdelete) { ?>
     <div class="modal fade" id="modalPersoDelete" tabindex="-1" aria-labelledby="modalPersoDeleteLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -220,7 +220,7 @@
 <!-- MODAL ENDE -->
 
 <!-- MODAL -->
-<?php if (in_array('full_admin', $_SESSION['permissions']) || in_array('admin', $_SESSION['permissions']) || in_array('admin', $_SESSION['personal_dokumente'])) { ?>
+<?php if ($admincheck || $perdoku) { ?>
     <div class="modal fade" id="modalDokuCreate" tabindex="-1" aria-labelledby="modalDokuCreateLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

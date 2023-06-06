@@ -49,7 +49,7 @@
                 $bg = "bg-danger";
             }
 
-            $adminPermission = in_array('admin', $_SESSION['permissions']) || in_array('full_admin', $_SESSION['permissions']);
+            $adminPermission = $admincheck;
 
             echo "<tr>";
             echo "<td><span class='badge $bg'>" . $docart . "</span></td>";

@@ -40,7 +40,7 @@ while ($comment = mysqli_fetch_array($comments)) {
     echo "<div class='comment $commentType border shadow-sm'>";
     $comtime = date("d.m.Y H:i", strtotime($comment['datetime']));
     echo "<p>{$comment['content']}<br><small><span><em>- {$comment['paneluser']} / $comtime";
-    if (in_array('full_admin', $_SESSION['permissions']) && $comment['type'] <= 3 || in_array('admin', $_SESSION['permissions']) && $comment['type'] <= 3) {
+    if ($fadmin && $comment['type'] <= 3 || $admin && $comment['type'] <= 3) {
         echo " / <a href='/admin/personal/comment-delete.php?id={$comment['logid']}&pid={$comment['profilid']}'><i class='fa-solid fa-trash-can fa-xs' style='color:red;margin-left:5px'></i></a></em></span></small></p>";
     } else {
         echo "</em></span></small></p>";

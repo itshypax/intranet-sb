@@ -76,3 +76,46 @@
     width: 33%;
   }
 }
+#adminnav-new .nav-link i.fa-solid {
+  color: var(--sh-red);
+}
+
+#adminnav-new .nav-link {
+  position: relative;
+  margin: 0 2px;
+}
+#adminnav-new .nav-link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--sh-red);
+  transition: width 0.3s ease-in-out;
+}
+#adminnav-new .nav-link:hover::before {
+  width: 100%;
+}
+#adminnav-new .nav-link.active {
+  font-weight: bold;
+}
+#adminnav-new .nav-link.active::before {
+  width: 100%;
+}
+
+@media (max-width: 1399px) {
+  #adminnav-new .navbar-nav {
+    flex-wrap: wrap;
+  }
+  #adminnav-new .navbar-nav .nav-link {
+    margin-bottom: 10px;
+  }
+}
+#darkmode-switch {
+  position: absolute;
+  right: 2%;
+  bottom: 3%;
+  z-index: 9999;
+}

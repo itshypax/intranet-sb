@@ -5,7 +5,7 @@
     </div>
     <?php
     if (isset($_SESSION['userid']) && isset($_SESSION['permissions'])) {
-        if (!in_array('full_admin', $_SESSION['permissions']) && !in_array('admin', $_SESSION['permissions']) && !in_array('antraege_view', $_SESSION['permissions'])) {
+        if ($notadmincheck && !$anview) {
     ?>
             <div class="cirs-login">
                 <a href="https://nordnetzwerk.eu/imprint/" class="text-decoration-none">Impressum</a>

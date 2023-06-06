@@ -1,10 +1,11 @@
 <?php
 session_start();
+require_once '../../assets/php/permissions.php';
 if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
     header("Location: /admin/login.php");
 }
 
-if (!in_array('full_admin', $_SESSION['permissions']) && !in_array('admin', $_SESSION['permissions']) && !in_array('users_delete', $_SESSION['permissions'])) {
+if ($notadmincheck && !$usdelete) {
     header("Location: /admin/users/list.php?message=error-2");
 }
 

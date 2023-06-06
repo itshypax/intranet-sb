@@ -1,8 +1,9 @@
 <?php
 session_start();
+require_once '../../assets/php/permissions.php';
 if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
     header("Location: /admin/login.php");
-} else if (!in_array('full_admin', $_SESSION['permissions']) && !in_array('admin', $_SESSION['permissions']) && !in_array('edivi_view', $_SESSION['permissions'])) {
+} else if ($notadmincheck && !$edview) {
     header("Location: /admin/index.php");
 }
 
@@ -38,6 +39,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     <!-- Bootstrap -->
     <link rel="stylesheet" href="/assets/bootstrap-5.3/css/bootstrap.min.css">
     <script src="/assets/bootstrap-5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/jquery/jquery-3.7.0.min.js"></script>
     <!-- html2canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Favicon -->
@@ -639,7 +641,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                 </div>
             </div>
         </div>
-        <?php if (in_array('full_admin', $_SESSION['permissions']) || in_array('admin', $_SESSION['permissions']) || in_array('edivi_edit', $_SESSION['permissions'])) { ?>
+        <?php if ($admincheck || $ededit) { ?>
             <!-- ------------ -->
             <!-- PRÜFUNG -->
             <!-- ------------ -->
