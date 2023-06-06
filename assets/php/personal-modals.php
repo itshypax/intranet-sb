@@ -242,6 +242,7 @@
                                 <option value="0">Ernennungsurkunde</option>
                                 <option value="1">Beförderungsurkunde</option>
                                 <option value="2">Entlassungsurkunde</option>
+                                <option value="3">Ausbildungsvertrag</option>
                                 <option value="5">Ausbildungszertifikat</option>
                                 <option value="6">Lehrgangszertifikat</option>
                                 <option value="10">Schriftliche Abmahnung</option>
@@ -310,7 +311,7 @@
                                     1 => 'Rettungssanitäter/-in',
                                 ];
                                 ?>
-                                <label for="erhalter_rang">Qualifikation</label>
+                                <label for="erhalter_rang_rd">Qualifikation</label>
                                 <select class="form-select" name="erhalter_rang_rd" id="erhalter_rang_rd">
                                     <option disabled hidden selected>Bitte wählen</option>
                                     <?php foreach ($rdoptions as $rdvalue => $rdlabel) : ?>
@@ -366,6 +367,32 @@
                                 <label for="inhalt">Begründung</label>
                                 <textarea name="inhalt" id="inhalt" style="resize:none"></textarea>
                             </div>
+                            <div id="form-6" style="display:none">
+                                <label for="anrede">Anrede</label>
+                                <select class="form-select mb-2" name="anrede" id="anrede">
+                                    <option disabled hidden selected>Bitte wählen</option>
+                                    <option value="0">Frau</option>
+                                    <option value="1">Herr</option>
+                                </select>
+                                <?php
+                                $rdoptions2 = [
+                                    2 => 'Notfallsanitäter/-in',
+                                    1 => 'Rettungssanitäter/-in',
+                                    0 => 'Rettungssanitäter/-in in Ausbildung',
+                                ];
+                                ?>
+                                <label for="erhalter_rang_rd_2">Qualifikation</label>
+                                <select class="form-select" name="erhalter_rang_rd_2" id="erhalter_rang_rd_2">
+                                    <option disabled hidden selected>Bitte wählen</option>
+                                    <?php foreach ($rdoptions2 as $rdvalue => $rdlabel) : ?>
+                                        <option value="<?php echo $rdvalue; ?>">
+                                            <?php echo $rdlabel; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <label for="ausstelungsdatum_3">Ausstellungsdatum</label>
+                                <input type="date" name="ausstelungsdatum_3" id="ausstelungsdatum_3" class="form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -384,6 +411,7 @@
         const form3 = document.getElementById('form-3');
         const form4 = document.getElementById('form-4');
         const form5 = document.getElementById('form-5');
+        const form6 = document.getElementById('form-6');
 
         docTypeSelect.addEventListener('change', function() {
             const selectedValue = docTypeSelect.value;
@@ -396,6 +424,7 @@
                 form3.style.display = 'none';
                 form4.style.display = 'none';
                 form5.style.display = 'none';
+                form6.style.display = 'none';
             } else if (selectedValue === '2') {
                 form0.style.display = 'none';
                 form1.style.display = 'block';
@@ -403,6 +432,15 @@
                 form3.style.display = 'none';
                 form4.style.display = 'none';
                 form5.style.display = 'none';
+                form6.style.display = 'none';
+            } else if (selectedValue === '3') {
+                form0.style.display = 'none';
+                form1.style.display = 'none';
+                form2.style.display = 'none';
+                form3.style.display = 'none';
+                form4.style.display = 'none';
+                form5.style.display = 'none';
+                form6.style.display = 'block';
             } else if (selectedValue === '5') {
                 form0.style.display = 'none';
                 form1.style.display = 'none';
@@ -410,6 +448,7 @@
                 form3.style.display = 'none';
                 form4.style.display = 'none';
                 form5.style.display = 'none';
+                form6.style.display = 'none';
             } else if (selectedValue === '6') {
                 form0.style.display = 'none';
                 form1.style.display = 'none';
@@ -417,6 +456,7 @@
                 form3.style.display = 'block';
                 form4.style.display = 'none';
                 form5.style.display = 'none';
+                form6.style.display = 'none';
             } else if (selectedValue === '10' || selectedValue === '11' || selectedValue === '12') {
                 form0.style.display = 'none';
                 form1.style.display = 'none';
@@ -428,6 +468,7 @@
                 } else {
                     form5.style.display = 'none';
                 }
+                form6.style.display = 'none';
             }
         });
     </script>

@@ -25,6 +25,7 @@
             0 => "Ernennungsurkunde",
             1 => "Beförderungsurkunde",
             2 => "Entlassungsurkunde",
+            3 => "Ausbildungsvertrag",
             5 => "Ausbildungszertifikat",
             6 => "Lehrgangszertifikat",
             10 => "Schriftliche Abmahnung",
@@ -38,7 +39,7 @@
             $docart = isset($arten[$doks['type']]) ? $arten[$doks['type']] : '';
             $path = '';
 
-            if ($doks['type'] <= 2) {
+            if ($doks['type'] <= 3) {
                 $path = "/dokumente/02/" . $doks['docid'];
                 $bg = "bg-secondary";
             } elseif ($doks['type'] == 5 || $doks['type'] == 6) {

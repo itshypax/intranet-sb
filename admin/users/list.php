@@ -39,7 +39,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
     <meta property="og:title" content="Intranet - Hansestadt Stettbeck" />
     <meta property="og:image" content="https://stettbeck.de/assets/img/STETTBECK_1.png" />
     <meta property="og:description" content="Intranet/Verwaltungsportal der Hansestadt Stettbeck" />
-    <script src="/assets/js/darkmode.js"></script>
+
 </head>
 
 <body data-page="benutzer">
@@ -259,7 +259,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                 if ($usedit || $admincheck) {
                                     echo "<td><a href='/admin/users/" . $row['id'] . "' class='btn btn-sm btn-primary'>Bearbeiten</a>";
                                     if (isset($row['aktenid']) && $row['aktenid'] > 0) {
-                                        echo " <a href='/admin/personal/" . $row['aktenid'] . "' class='btn btn-sm btn-warning'>Profil</a>";
+                                        echo " <a href='/admin/personal/profile.php?id=" . $row['aktenid'] . "' class='btn btn-sm btn-warning'>Profil</a>";
                                     }
                                     echo "</td>";
                                 } else {
@@ -312,9 +312,8 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                 });
             });
         </script>
-        <button onclick="toggleDarkMode()" class="btn btn-secondary" id="darkmode-switch">
-            <i id="darkModeIcon" class="fas"></i> Lichtschalter
-        </button>
+    </div>
+
 </body>
 
 </html>

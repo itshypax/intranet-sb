@@ -8,7 +8,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
     die('Bitte zuerst <a href="/admin/login.php">einloggen</a>');
 }
 
-if (!$notadmincheck && !$cteam) {
+if ($notadmincheck && !$cteam) {
     header("Location: /cirs/index.php?message=error-2");
 }
 
@@ -72,7 +72,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     <meta property="og:title" content="Intranet - Hansestadt Stettbeck" />
     <meta property="og:image" content="https://stettbeck.de/assets/img/STETTBECK_1.png" />
     <meta property="og:description" content="Intranet/Verwaltungsportal der Hansestadt Stettbeck" />
-    <script src="/assets/js/darkmode.js"></script>
+
 </head>
 
 <body data-page="cirs">
@@ -444,9 +444,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
             </div>
         </div>
     </div>
-    <button onclick="toggleDarkMode()" class="btn btn-secondary" id="darkmode-switch">
-        <i id="darkModeIcon" class="fas"></i> Lichtschalter
-    </button>
+
 </body>
 
 </html>

@@ -38,6 +38,22 @@ $dienstgrade = [
     13 => "Branddirektor/-in",
     14 => "Leitende/-r Branddirektor/-in",
 ];
+$rankIcons = [
+    1 => '/assets/img/dienstgrade/bf/1.png',
+    2 => '/assets/img/dienstgrade/bf/2.png',
+    3 => '/assets/img/dienstgrade/bf/3.png',
+    4 => '/assets/img/dienstgrade/bf/4.png',
+    5 => '/assets/img/dienstgrade/bf/5.png',
+    6 => '/assets/img/dienstgrade/bf/6.png',
+    7 => '/assets/img/dienstgrade/bf/7.png',
+    8 => '/assets/img/dienstgrade/bf/8.png',
+    9 => '/assets/img/dienstgrade/bf/9.png',
+    10 => '/assets/img/dienstgrade/bf/10.png',
+    11 => '/assets/img/dienstgrade/bf/11.png',
+    12 => '/assets/img/dienstgrade/bf/12.png',
+    13 => '/assets/img/dienstgrade/bf/13.png',
+    14 => '/assets/img/dienstgrade/bf/14.png',
+];
 $dienstgrad = isset($dienstgrade[$dg]) ? $dienstgrade[$dg] : '';
 $ausstelldatum = date("d.m.Y", strtotime($row['ausstelungsdatum']));
 
@@ -221,7 +237,7 @@ $typtext = isset($typen[$typ]) ? $typen[$typ] : '';
                                             <td class="signature"><?= $lastname ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Berufsfeuerwehr Stettbeck<br><?= $rdata['fullname'] ?> | <?= $dienstgrad2 ?></td>
+                                            <td>Berufsfeuerwehr Stettbeck<br><?= $rdata['fullname'] ?> | <img src="<?= $rankIcons[$bfrang] ?>" height='12px' width='auto' alt='Dienstgrad' /> <?= $dienstgrad2 ?></td>
                                         </tr>
                                     </tbody>
                                 </table>

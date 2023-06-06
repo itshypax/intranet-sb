@@ -270,6 +270,15 @@ if (isset($_POST['new'])) {
             mysqli_stmt_bind_param($docStmt, "iissssii", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $ausstelungsdatum, $ausstellerid, $profileid);
             header('Location: /dokumente/02/' . $new_number, true, 302);
             $logContent = 'Ein neues Dokument (<a href="/dokumente/02/' . $new_number . '" target="_blank">' . $new_number . '</a>) wurde erstellt.';
+        } elseif ($docType == 3) {
+            $anrede = $_POST['anrede'];
+            $erhalter_rang_rd_2 = $_POST['erhalter_rang_rd_2'];
+            $ausstelungsdatum = date('Y-m-d', strtotime($_POST['ausstelungsdatum_' . $docType]));
+
+            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, erhalter_rang_rd, ausstelungsdatum, ausstellerid, profileid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($docStmt, "iisssssii", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $erhalter_rang_rd_2, $ausstelungsdatum, $ausstellerid, $profileid);
+            header('Location: /dokumente/04/' . $new_number, true, 302);
+            $logContent = 'Ein neues Dokument (<a href="/dokumente/04/' . $new_number . '" target="_blank">' . $new_number . '</a>) wurde erstellt.';
         } elseif ($docType == 5) {
             $anrede = $_POST['anrede'];
             $erhalter_rang_rd = $_POST['erhalter_rang_rd'];
@@ -354,7 +363,7 @@ if (isset($_POST['new'])) {
     <meta property="og:title" content="Intranet - Hansestadt Stettbeck" />
     <meta property="og:image" content="https://stettbeck.de/assets/img/STETTBECK_1.png" />
     <meta property="og:description" content="Intranet/Verwaltungsportal der Hansestadt Stettbeck" />
-    <script src="/assets/js/darkmode.js"></script>
+
 </head>
 
 <body data-page="mitarbeiter">
@@ -662,7 +671,7 @@ if (isset($_POST['new'])) {
                                                 <tr>
                                                     <td class="fw-bold">Foren-Profil</td>
                                                     <td><span class="mx-1"></span></td>
-                                                    <td><a href="https://nordnetzwerk.eu/app/users/<?= $row['forumprofil'] ?>">Link</a></td>
+                                                    <td><a href="https://nordnetzwerk.eu/app/user/<?= $row['forumprofil'] ?>">Zum Profil</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bold">Discord-Tag</td>
@@ -766,10 +775,9 @@ if (isset($_POST['new'])) {
                 </div>
             </div>
         </div>
-        <?php include('../../assets/php/personal-modals.php') ?>
-        <button onclick="toggleDarkMode()" class="btn btn-secondary" id="darkmode-switch">
-            <i id="darkModeIcon" class="fas"></i> Lichtschalter
-        </button>
+    </div>
+    <?php include('../../assets/php/personal-modals.php') ?>
+
 </body>
 
 </html>

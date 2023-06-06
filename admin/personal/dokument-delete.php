@@ -19,7 +19,7 @@ $pid = $_GET['pid'];
 
 $sql = "DELETE FROM personal_dokumente WHERE docid = $id";
 mysqli_query($conn, $sql);
-header('Location: /admin/personal/' . $pid)
+header('Location: /admin/personal/profile.php?id=' . $pid)
 
 ?>
 
@@ -35,9 +35,7 @@ header('Location: /admin/personal/' . $pid)
 
 <body>
 
-    <button onclick="toggleDarkMode()" class="btn btn-secondary" id="darkmode-switch">
-        <i id="darkModeIcon" class="fas"></i> Lichtschalter
-    </button>
+
 </body>
 
 </html>

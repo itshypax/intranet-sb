@@ -65,10 +65,18 @@ span.bfcolor {
   }
 }
 
+[data-page-type="3"] .page h1 {
+  font-size: 17pt !important;
+}
+
 .page h1 {
   color: #9c0000;
   font-weight: bolder;
   font-size: 22pt;
+}
+
+.av-body p {
+  font-size: 15pt;
 }
 
 .urkunde-body p {

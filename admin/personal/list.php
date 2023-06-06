@@ -39,7 +39,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
     <meta property="og:title" content="Intranet - Hansestadt Stettbeck" />
     <meta property="og:image" content="https://stettbeck.de/assets/img/STETTBECK_1.png" />
     <meta property="og:description" content="Intranet/Verwaltungsportal der Hansestadt Stettbeck" />
-    <script src="/assets/js/darkmode.js"></script>
+
 </head>
 
 <body data-page="mitarbeiter">
@@ -287,7 +287,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                 }
                                 echo "<td><span style='display:none'>" . $row['einstdatum'] . "</span>" . $einstellungsdatum . "</td>";
                                 if ($peredit || $admincheck) {
-                                    echo "<td><a href='/admin/personal/" . $row['id'] . "' class='btn btn-sm btn-primary'>Bearbeiten</a></td>";
+                                    echo "<td><a href='/admin/personal/profile.php?id=" . $row['id'] . "' class='btn btn-sm btn-primary'>Bearbeiten</a></td>";
                                 } else {
                                     echo "<td></td>";
                                 }
@@ -341,9 +341,8 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                 });
             });
         </script>
-        <button onclick="toggleDarkMode()" class="btn btn-secondary" id="darkmode-switch">
-            <i id="darkModeIcon" class="fas"></i> Lichtschalter
-        </button>
+    </div>
+
 </body>
 
 </html>

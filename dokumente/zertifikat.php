@@ -34,6 +34,39 @@ $qualis = [
     3 => 'ILS Disponent/-in',
     4 => 'Sonderfahrzeug-Maschinist/-in',
 ];
+$dienstgradebf = [
+    0 => "Angestellte/-r",
+    1 => "Brandmeisteranwärter/-in",
+    2 => "Brandmeister/-in",
+    3 => "Oberbrandmeister/-in",
+    4 => "Hauptbrandmeister/-in",
+    5 => "Hauptbrandmeister/-in mit AZ",
+    6 => "Brandinspektor/-in",
+    7 => "Oberbrandinspektor/-in",
+    8 => "Brandamtmann/frau",
+    9 => "Brandamtsrat/rätin",
+    10 => "Brandoberamtsrat/rätin",
+    11 => "Brandrat/rätin",
+    12 => "Oberbrandrat/rätin",
+    13 => "Branddirektor/-in",
+    14 => "Leitende/-r Branddirektor/-in",
+];
+$rankIcons = [
+    1 => '/assets/img/dienstgrade/bf/1.png',
+    2 => '/assets/img/dienstgrade/bf/2.png',
+    3 => '/assets/img/dienstgrade/bf/3.png',
+    4 => '/assets/img/dienstgrade/bf/4.png',
+    5 => '/assets/img/dienstgrade/bf/5.png',
+    6 => '/assets/img/dienstgrade/bf/6.png',
+    7 => '/assets/img/dienstgrade/bf/7.png',
+    8 => '/assets/img/dienstgrade/bf/8.png',
+    9 => '/assets/img/dienstgrade/bf/9.png',
+    10 => '/assets/img/dienstgrade/bf/10.png',
+    11 => '/assets/img/dienstgrade/bf/11.png',
+    12 => '/assets/img/dienstgrade/bf/12.png',
+    13 => '/assets/img/dienstgrade/bf/13.png',
+    14 => '/assets/img/dienstgrade/bf/14.png',
+];
 $qualifikation = isset($qualis[$dq]) ? $qualis[$dq] : '';
 $ausstelldatum = date("d.m.Y", strtotime($row['ausstelungsdatum']));
 
@@ -48,7 +81,7 @@ if ($adata['aktenid'] > 0) {
     $result3 = mysqli_query($conn, "SELECT id,fullname,dienstgrad,qualird FROM personal_profile WHERE id = " . $adata['aktenid']) or die(mysqli_error($conn));
     $rdata = mysqli_fetch_array($result3);
     $bfrang = $rdata['dienstgrad'];
-    $dienstgrad2 = isset($dienstgrade[$bfrang]) ? $dienstgrade[$bfrang] : '';
+    $dienstgrad2 = isset($dienstgradebf[$bfrang]) ? $dienstgradebf[$bfrang] : '';
 }
 
 $typ = $row['type'];
@@ -197,7 +230,7 @@ $typtext = isset($typen[$typ]) ? $typen[$typ] : '';
                                         <td class="signature"><?= $lastname ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Berufsfeuerwehr Stettbeck<br><?= $rdata['fullname'] ?> | <?= $dienstgrad2 ?></td>
+                                        <td>Berufsfeuerwehr Stettbeck<br><?= $rdata['fullname'] ?> | <img src="<?= $rankIcons[$bfrang] ?>" height='12px' width='auto' alt='Dienstgrad' /> <?= $dienstgrad2 ?></td>
                                     </tr>
                                 </tbody>
                             </table>
