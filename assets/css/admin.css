@@ -120,6 +120,42 @@
   z-index: 9999;
 }
 
-[data-bs-theme=dark] .container.shadow.rounded-3 {
-  background-color: var(--sh-darkgray) !important;
+#topLogo {
+  background-color: var(--sh-gray);
+}
+
+[data-bs-theme=dark] #topLogo {
+  background-color: var(--sh-red);
+  border-bottom-color: var(--sh-red-dimmed) !important;
+}
+[data-bs-theme=dark] svg g#fh > path,
+[data-bs-theme=dark] svg g#sb > path {
+  fill: var(--white) !important;
+}
+[data-bs-theme=dark] #mainpageContainer {
+  background-color: var(--bs-tertiary-bg) !important;
+}
+[data-bs-theme=dark] hr.text-light {
+  color: var(--bs-tertiary-bg) !important;
+}
+[data-bs-theme=dark] .ma-basedata,
+[data-bs-theme=dark] .ma-comments,
+[data-bs-theme=dark] .ma-documents {
+  background-color: var(--bs-secondary-bg) !important;
+  border-color: var(--bs-tertiary-color) !important;
+}
+[data-bs-theme=dark] .comment p {
+  color: var(--black);
+}
+[data-bs-theme=dark] .dropzone {
+  background: var(--bs-tertiary-bg) !important;
+  border-color: var(--sh-red);
+}
+
+/* CSS for the floating button */
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
 }

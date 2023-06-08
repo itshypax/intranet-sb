@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once("../assets/php/permissions.php");
 ?>
 
 <!DOCTYPE html>

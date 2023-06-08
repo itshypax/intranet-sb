@@ -12,7 +12,7 @@
                                 <i class="fa-solid fa-brake-warning" style="margin-right:8px"></i> CIRS
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/cirs/index.php">Übersicht</a></li>
+                                <li><a class="dropdown-item" href="/cirs/new.php">Neue Meldung</a></li>
                                 <?php if ($cteam || $admincheck) { ?>
                                     <li><a class="dropdown-item" href="/admin/cirs/list.php">Fallübersicht</a></li>
                                 <?php } ?>

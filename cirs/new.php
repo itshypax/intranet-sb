@@ -41,6 +41,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
 }
 
 session_start();
+include_once '../assets/php/permissions.php';
 
 ?>
 

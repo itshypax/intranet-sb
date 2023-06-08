@@ -9,7 +9,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8" />
@@ -44,7 +44,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
 
 <body data-page="upload">
     <!-- NAVIGATION -->
-    <div class="container-fluid bg-sh-gray d-flex justify-content-center align-items-center pb-5 border-3 border-bottom border-sh-semigray">
+    <div class="container-fluid d-flex justify-content-center align-items-center pb-5 border-3 border-bottom border-sh-semigray" id="topLogo">
         <a class="" id="sb-logo" href="#">
             <svg id="a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2784.97 526.37" height="130" width="auto" style="transform:scale(.5)">
                 <g id="b">
@@ -186,7 +186,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                     <path d="M224.09,126.66c-.09-2.07,.25-2.78,1.11-2.87,.82-.08,1.38,.63,1.64,2.08,.21,1.17,.4,2.34,.55,3.52,.22,1.62,.63,3.09,2.09,4.1,.75,.52,.79,1.47,.26,2.1-.57,.66-1.2,.68-1.94,.22-1.31-.81-2.13-1.97-2.63-3.39-.71-2.02-.93-4.12-1.07-5.77Z" style="fill:#fefbfb;" />
                     <path d="M307.13,115.8c.02,.13,.03,.26,.04,.39-.21-.02-.5,.12-.51-.24,0-.05,.31-.1,.47-.15Z" style="fill:#e46266;" />
                 </g>
-                <g>
+                <g id="fh">
                     <path d="M383.08,23.81h100.76l1.68,42.88h-5.78c-2.57-14.74-6.17-24.34-10.8-28.81-5.31-5.19-12.87-7.79-22.7-7.79h-19.85c-1.96,0-3.38,.46-4.27,1.38-.89,.92-1.34,2.3-1.34,4.15v44.81h10.64c5.92,0,10.64-1.95,14.15-5.86,3.52-3.91,5.42-9.94,5.7-18.09h6.03v55.87h-6.03c-.39-9.27-2.29-15.89-5.7-19.85-3.41-3.96-8.12-5.95-14.15-5.95h-10.64v47.24c0,2.79,.67,4.76,2.01,5.9,1.34,1.15,3.66,1.72,6.95,1.72h12.9v6.28h-59.55v-6.28h12.73c2.57,0,4.4-.52,5.49-1.55,1.09-1.03,1.63-2.72,1.63-5.07V36.29c0-2.23-.57-3.82-1.72-4.77-1.15-.95-3.14-1.42-5.99-1.42h-12.14v-6.28Z" style="fill:#000;" />
                     <path d="M527.28,23.81h63.99c12.4,0,22.01,2.82,28.85,8.46,6.84,5.64,10.26,13.04,10.26,22.2,0,5.47-1.35,10.34-4.06,14.62-2.71,4.27-6.62,7.68-11.73,10.22-5.11,2.54-13.14,4.37-24.08,5.49,7.96,2.18,13.45,4.31,16.46,6.41,3.01,2.09,5.42,4.8,7.23,8.12,1.81,3.32,3.9,10.09,6.27,20.31,1.69,7.32,3.49,12.31,5.39,14.99,1.45,2.07,3.02,3.1,4.69,3.1s3.34-1.27,4.82-3.81c1.48-2.54,2.39-7.02,2.72-13.44h5.7c-1.06,18.99-8.07,28.48-21.02,28.48-4.08,0-7.61-1.03-10.6-3.1-2.99-2.06-5.23-5.11-6.74-9.13-1.17-3.02-2.49-10.92-3.94-23.7-.84-7.43-2.16-12.7-3.98-15.83-1.81-3.13-4.65-5.64-8.5-7.54-3.85-1.9-8.46-2.85-13.82-2.85h-10.13v48.66c0,2.07,.53,3.52,1.59,4.36,1.34,1.06,3.43,1.59,6.28,1.59h11.89v6.28h-57.54v-6.28h12.14c2.68,0,4.65-.53,5.9-1.59,1.26-1.06,1.88-2.51,1.88-4.36V36.46c0-2.12-.64-3.71-1.93-4.77-1.29-1.06-3.24-1.59-5.86-1.59h-12.14v-6.28Zm37.77,56.95h14.66c9.83,0,17.52-1.85,23.08-5.56,5.56-3.71,8.33-10.3,8.33-19.78,0-6.52-1.05-11.68-3.14-15.47-2.09-3.79-4.84-6.38-8.25-7.78-3.41-1.39-10.11-2.09-20.1-2.09-6.59,0-10.67,.46-12.23,1.38-1.56,.92-2.35,2.49-2.35,4.72v44.57Z" style="fill:#000;" />
                     <path d="M692.33,23.81h98.16l2.35,41.79h-5.61c-2.23-13.18-5.76-22.39-10.58-27.64-4.82-5.25-11.11-7.87-18.86-7.87h-24.26c-1.95,0-3.43,.53-4.43,1.59-1,1.06-1.51,2.68-1.51,4.86v44.14h10.61c5.68,0,10.29-2.04,13.82-6.11,3.54-4.08,5.44-10.33,5.72-18.76h5.78v57.37h-5.78c-.28-9.49-2.21-16.29-5.81-20.4-3.59-4.1-8.48-6.16-14.66-6.16h-9.69v49.25c0,1.79,.6,3.16,1.8,4.1,1.2,.95,3.19,1.42,5.98,1.42h19.16c20.8,0,32.79-13.29,35.97-39.87h6.03l-2.09,46.15h-102.1v-6.28h8.46c3.29,0,5.61-.57,6.95-1.72,1.34-1.14,2.01-2.81,2.01-4.98V36.54c0-2.18-.59-3.8-1.76-4.86-1.17-1.06-3.02-1.59-5.53-1.59h-10.13v-6.28Z" style="fill:#000;" />
@@ -203,7 +203,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                     <path d="M2439.26,23.81h63.99c9.49,0,17.56,1.68,24.21,5.03,8.26,4.24,15.29,11.31,21.07,21.19s8.67,21.58,8.67,35.09c0,11.17-1.73,21.22-5.19,30.15-2.62,6.87-6.66,12.87-12.1,18.01-5.44,5.14-12.08,8.99-19.89,11.56-5.86,1.9-13.68,2.85-23.45,2.85h-57.29v-6.28h11.73c2.96,0,5.01-.47,6.16-1.42,1.14-.95,1.72-2.43,1.72-4.44V35.79c0-1.73-.62-3.11-1.84-4.15-1.23-1.03-2.93-1.55-5.11-1.55h-12.65v-6.28Zm44.89,6.28c-2.51,0-4.37,.53-5.57,1.59-1.2,1.06-1.8,2.65-1.8,4.77v98.83c0,2.01,.7,3.53,2.09,4.56,1.4,1.03,3.77,1.55,7.12,1.55h10.55c9.44,0,17.7-2.43,24.79-7.29,4.63-3.24,8.15-7.79,10.55-13.65,3.29-7.93,4.94-18.87,4.94-32.83,0-20.66-3.6-35.79-10.8-45.4-6.14-8.1-15.41-12.15-27.81-12.15h-14.07Z" style="fill:#000;" />
                     <path d="M2608.67,23.81h100.59l2.43,46.82h-5.78c-3.81-27.53-13.77-41.29-29.88-41.29-3.25,0-5.47,.56-6.67,1.68-1.2,1.12-1.8,2.96-1.8,5.53v99c0,2.01,.59,3.49,1.76,4.44,1.17,.95,3.1,1.42,5.78,1.42h12.48v6.28h-57.54v-6.28h14.24c1.9,0,3.35-.47,4.36-1.42,1-.95,1.51-2.21,1.51-3.77V35.79c0-2.12-.64-3.73-1.93-4.82-1.29-1.09-3.35-1.63-6.2-1.63-8.1,0-14.85,3.83-20.27,11.48-4.47,6.31-7.68,16.25-9.63,29.82h-6.11l2.68-46.82Z" style="fill:#000;" />
                 </g>
-                <g>
+                <g id="sb">
                     <path d="M506.71,226.87l13.51-19.37h10.96l.9,80.92h-9.91c-6.21-24.82-15.39-42.94-27.55-54.35-12.16-11.41-26.15-17.11-41.96-17.11-13.21,0-24.02,3.96-32.43,11.87-8.41,7.91-12.61,17.58-12.61,29,0,7.11,1.6,13.35,4.8,18.71,3.2,5.36,7.98,9.72,14.33,13.07,6.35,3.36,18.34,6.93,35.96,10.71,24.73,5.38,42.07,10.82,52.03,16.32,9.96,5.5,17.39,12.44,22.29,20.79,4.9,8.36,7.36,18.14,7.36,29.35,0,20.02-6.73,36.61-20.19,49.77-13.46,13.16-30.85,19.74-52.17,19.74-22.92,0-42.84-7.41-59.75-22.22l-16.96,20.72h-10.81v-86.02h10.81c4.2,23.72,13.61,42.44,28.22,56.15,14.61,13.71,31.08,20.57,49.39,20.57,14.81,0,26.9-4.38,36.26-13.14,9.36-8.76,14.04-19.39,14.04-31.9,0-7.11-1.75-13.34-5.25-18.69-3.5-5.35-9.06-9.86-16.66-13.51-7.61-3.65-22.57-8.08-44.89-13.29-24.52-5.8-41.24-12.31-50.14-19.52-12.51-10.21-18.77-24.67-18.77-43.39s6.23-35.5,18.69-47.97c12.46-12.46,28.4-18.69,47.82-18.69,9.31,0,18.17,1.65,26.57,4.95s17.11,8.81,26.12,16.51Z" style="fill:#000;" />
                     <path d="M625.52,210.05h180.3l4.35,83.92h-10.36c-6.82-49.34-24.68-74.01-53.56-74.01-5.82,0-9.8,1-11.96,3-2.16,2-3.23,5.31-3.23,9.91v177.45c0,3.6,1.05,6.26,3.15,7.96,2.1,1.7,5.55,2.55,10.36,2.55h22.37v11.26h-103.14v-11.26h25.52c3.4,0,6-.85,7.81-2.55,1.8-1.7,2.7-3.95,2.7-6.76V231.52c0-3.8-1.15-6.68-3.45-8.63-2.3-1.95-6-2.93-11.11-2.93-14.51,0-26.62,6.86-36.33,20.57-8.01,11.31-13.76,29.12-17.26,53.45h-10.96l4.8-83.92Z" style="fill:#000;" />
                     <path d="M891,210.05h175.95l4.2,74.91h-10.06c-4-23.62-10.32-40.13-18.97-49.54-8.65-9.41-19.91-14.11-33.8-14.11h-43.48c-3.5,0-6.15,.95-7.95,2.85-1.8,1.9-2.7,4.8-2.7,8.71v79.12h19.01c10.18,0,18.44-3.65,24.78-10.96,6.34-7.3,9.76-18.51,10.26-33.63h10.36v102.84h-10.36c-.5-17.01-3.97-29.2-10.41-36.56-6.44-7.36-15.2-11.03-26.27-11.03h-17.37v88.27c0,3.2,1.07,5.66,3.22,7.36,2.15,1.7,5.72,2.55,10.72,2.55h34.33c37.28,0,58.77-23.82,64.47-71.46h10.81l-3.75,82.72h-183v-11.26h15.16c5.9,0,10.06-1.02,12.46-3.08,2.4-2.05,3.6-5.03,3.6-8.93V232.87c0-3.9-1.05-6.81-3.15-8.71-2.1-1.9-5.4-2.85-9.91-2.85h-18.17v-11.26Z" style="fill:#000;" />
@@ -217,7 +217,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
             </svg>
         </a>
     </div>
-    <div class="container shadow rounded-3 position-relative bg-light" style="margin-top:-50px;z-index:10">
+    <div class="container shadow rounded-3 position-relative bg-light mb-3" style="margin-top:-50px;z-index:10" id="mainpageContainer">
         <?php include '../../assets/php/admin-nav-v2.php' ?>
         <!-- ------------ -->
         <!-- PAGE CONTENT -->
@@ -264,47 +264,85 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                 </div>
             </div>
         </div>
-        <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                var table = $('#table-uploads').DataTable({
-                    paging: true,
-                    lengthMenu: [5, 10, 20, 50],
-                    pageLength: 10,
-                    columnDefs: [{
-                        orderable: false,
-                        targets: -1
-                    }],
-                    language: {
-                        "decimal": "",
-                        "emptyTable": "Keine Daten vorhanden",
-                        "info": "Zeige _START_ bis _END_  | Gesamt: _TOTAL_",
-                        "infoEmpty": "Keine Daten verfügbar",
-                        "infoFiltered": "| Gefiltert von _MAX_ Uploads",
-                        "infoPostFix": "",
-                        "thousands": ",",
-                        "lengthMenu": "_MENU_ Uploads pro Seite anzeigen",
-                        "loadingRecords": "Lade...",
-                        "processing": "Verarbeite...",
-                        "search": "Upload suchen:",
-                        "zeroRecords": "Keine Einträge gefunden",
-                        "paginate": {
-                            "first": "Erste",
-                            "last": "Letzte",
-                            "next": "Nächste",
-                            "previous": "Vorherige"
-                        },
-                        "aria": {
-                            "sortAscending": ": aktivieren, um Spalte aufsteigend zu sortieren",
-                            "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
-                        }
-                    }
-                });
-            });
-        </script>
     </div>
+    <div class="floating-button">
+        <button id="dark-mode-toggle" class="btn btn-primary">
+            <i id="mode-icon" class="fa-solid fa-lightbulb"></i>
+        </button>
+    </div>
+    <script>
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            const html = document.querySelector('html');
+            const isDarkMode = html.getAttribute('data-bs-theme') === 'dark';
 
+            if (isDarkMode) {
+                html.setAttribute('data-bs-theme', 'light');
+                localStorage.setItem('darkMode', 'false');
+            } else {
+                html.setAttribute('data-bs-theme', 'dark');
+                localStorage.setItem('darkMode', 'true');
+            }
+        }
+
+        // Function to check and set the theme based on user preference
+        function checkThemePreference() {
+            const savedDarkMode = localStorage.getItem('darkMode');
+            const html = document.querySelector('html');
+
+            if (savedDarkMode === 'true') {
+                html.setAttribute('data-bs-theme', 'dark');
+            } else {
+                html.setAttribute('data-bs-theme', 'light');
+            }
+        }
+
+        // Event listener for dark mode toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+
+        // Initialize theme preference
+        checkThemePreference();
+    </script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#table-uploads').DataTable({
+                paging: true,
+                lengthMenu: [5, 10, 20, 50],
+                pageLength: 10,
+                columnDefs: [{
+                    orderable: false,
+                    targets: -1
+                }],
+                language: {
+                    "decimal": "",
+                    "emptyTable": "Keine Daten vorhanden",
+                    "info": "Zeige _START_ bis _END_  | Gesamt: _TOTAL_",
+                    "infoEmpty": "Keine Daten verfügbar",
+                    "infoFiltered": "| Gefiltert von _MAX_ Uploads",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "_MENU_ Uploads pro Seite anzeigen",
+                    "loadingRecords": "Lade...",
+                    "processing": "Verarbeite...",
+                    "search": "Upload suchen:",
+                    "zeroRecords": "Keine Einträge gefunden",
+                    "paginate": {
+                        "first": "Erste",
+                        "last": "Letzte",
+                        "next": "Nächste",
+                        "previous": "Vorherige"
+                    },
+                    "aria": {
+                        "sortAscending": ": aktivieren, um Spalte aufsteigend zu sortieren",
+                        "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -1,8 +1,6 @@
 <?php
 session_start();
-?>
-
-<?php
+include_once '../assets/php/permissions.php';
 
 include("../assets/php/mysql-con.php");
 
