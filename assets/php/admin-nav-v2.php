@@ -6,7 +6,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav mx-auto">
-                        <a class="nav-link" href="/admin/index.php" data-page="dashboard"><i class="fa-solid fa-house" style="margin-right:8px"></i> Dashboard</a>
+                        <a class="nav-link" href="/admin/index.php" data-page="dashboard" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Dashboard"><i class="fa-solid fa-house"></i></a>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-page="cirs" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-brake-warning" style="margin-right:8px"></i> CIRS
@@ -78,7 +78,7 @@
                                 </ul>
                             </li>
                         <?php } ?>
-                        <a class="nav-link" href="/admin/logout.php"><i class="fa-solid fa-right-from-bracket" style="margin-right:8px"></i> Abmelden</a>
+                        <a class="nav-link" href="/admin/logout.php" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Abmelden"><i class="fa-solid fa-right-from-bracket"></i></a>
                     </div>
                 </div>
             </div>
@@ -94,4 +94,7 @@
             // Add active class to the appropriate nav-link
             $(".nav-link[data-page='" + currentPage + "']").addClass("active");
         });
+
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
