@@ -71,6 +71,8 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
 </head>
 
 <body data-page="benutzer">
+    <!-- PRELOAD -->
+    <?php include "../../assets/php/preload.php"; ?>
     <!-- NAVIGATION -->
     <div class="container-fluid d-flex justify-content-center align-items-center pb-5 border-3 border-bottom border-sh-semigray" id="topLogo">
         <a class="" id="sb-logo" href="#">
