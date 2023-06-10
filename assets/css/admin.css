@@ -84,6 +84,7 @@
 }
 #adminnav-new .nav-link.active {
   font-weight: bold;
+  color: var(--white) !important;
   background-color: var(--sh-red);
   border-top: 4px solid var(--sh-red-dimmed);
   border-radius: 5px;
@@ -140,6 +141,10 @@
 [data-bs-theme=dark] .dropzone {
   background: var(--bs-tertiary-bg) !important;
   border-color: var(--sh-red);
+}
+[data-bs-theme=dark] #startpage .col.bg-sh-gray,
+[data-bs-theme=dark] #startpage .col-6.bg-sh-gray {
+  background-color: #212529 !important;
 }
 
 /* CSS for the floating button */

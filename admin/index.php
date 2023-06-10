@@ -223,7 +223,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
         <!-- PAGE CONTENT -->
         <!-- ------------ -->
         <div class="container">
-            <div class="row">
+            <div class="row" id="startpage">
                 <div class="col mb-5">
                     <hr class="text-light my-3">
                     <h1>Dashboard</h1>
@@ -237,74 +237,180 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                         <h3>Hallo, <?= $_SESSION['cirs_user'] ?>!</h3>
                         Willkommen im Schweizer Taschenmesser der Stettbecker Kommunalverwaltung.
                     </div>
-                    <?php include "../assets/php/mysql-con.php";
-                    $query = "SELECT dienstgrad, COUNT(*) as count FROM personal_profile GROUP BY dienstgrad";
-                    $result = $conn->query($query);
+                    <div class="row">
+                        <div class="col-6 bg-sh-gray me-2">
+                            <?php include "../assets/php/mysql-con.php";
+                            $query3 = "SELECT cirs_status, COUNT(*) as count FROM cirs_antraege_be GROUP BY cirs_status";
+                            $result3 = $conn->query($query3);
 
-                    // Create empty arrays to store the data
-                    $data = [];
-                    $labels = [];
+                            // Create empty arrays to store the data
+                            $data3 = [];
+                            $labels3 = [];
 
-                    $dienstgrade = [
-                        0 => "Angestellte/-r",
-                        1 => "Brandmeisteranwärter/-in",
-                        2 => "Brandmeister/-in",
-                        3 => "Oberbrandmeister/-in",
-                        4 => "Hauptbrandmeister/-in",
-                        5 => "Hauptbrandmeister/-in mit AZ",
-                        6 => "Brandinspektor/-in",
-                        7 => "Oberbrandinspektor/-in",
-                        8 => "Brandamtmann/frau",
-                        9 => "Brandamtsrat/rätin",
-                        10 => "Brandoberamtsrat/rätin",
-                        11 => "Brandrat/rätin",
-                        12 => "Oberbrandrat/rätin",
-                        13 => "Branddirektor/-in",
-                        14 => "Leitende/-r Branddirektor/-in",
-                    ];
+                            $antragStatus = [
+                                0 => "in Bearbeitung",
+                                1 => "Abgelehnt",
+                                2 => "Aufgeschoben",
+                                3 => "Angenommen",
+                            ];
 
-                    // Process the query result
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $rank = $row['dienstgrad'];
-                            $rankLabel = isset($dienstgrade[$rank]) ? $dienstgrade[$rank] : 'Unbekannt';
+                            // Process the query result
+                            if ($result3->num_rows > 0) {
+                                while ($row = $result3->fetch_assoc()) {
+                                    $status = $row['cirs_status'];
+                                    $rankLabel = isset($antragStatus[$status]) ? $antragStatus[$status] : 'Unbekannt';
 
-                            $data[] = $row['count'];
-                            $labels[] = $rankLabel;
-                        }
-                    }
-
-                    // Close the database connection
-                    $conn->close();
-
-                    ?>
-                    <canvas id="rankChart"></canvas>
-
-                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                    <script>
-                        var ctx = document.getElementById('rankChart').getContext('2d');
-                        var chart = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: <?php echo json_encode($labels); ?>,
-                                datasets: [{
-                                    label: 'Mitarbeiter pro Dienstgrad',
-                                    data: <?php echo json_encode($data); ?>,
-                                    backgroundColor: 'rgba(212, 0, 75, .7)', // Example color
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true,
-                                        precision: 0
-                                    }
+                                    $data3[] = $row['count'];
+                                    $labels3[] = $rankLabel;
                                 }
                             }
-                        });
-                    </script>
 
+                            ?>
+                            <canvas id="antragChart"></canvas>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                            <script>
+                                var ctx = document.getElementById('antragChart').getContext('2d');
+                                var chart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: <?php echo json_encode($labels3); ?>,
+                                        datasets: [{
+                                            label: 'Beförderungsanträge',
+                                            data: <?php echo json_encode($data3); ?>,
+                                            backgroundColor: 'rgba(110, 168, 254, .7)', // Example color
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                                precision: 0
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                        <div class="col bg-sh-gray">
+
+                            <?php
+                            $statusMapping = [
+                                0 => 'Ungesehen',
+                                1 => 'in Prüfung',
+                                2 => 'Freigegeben',
+                                3 => 'Ungenügend',
+                            ];
+
+                            $query2 = "SELECT protokoll_status, COUNT(*) as count FROM cirs_rd_protokolle GROUP BY protokoll_status";
+                            $result2 = $conn->query($query2);
+
+                            $data2 = [];
+                            $labels2 = [];
+
+                            if ($result2->num_rows > 0) {
+                                while ($row = $result2->fetch_assoc()) {
+                                    $status = $row['protokoll_status'];
+                                    $statusLabel = isset($statusMapping[$status]) ? $statusMapping[$status] : 'Unbekannt';
+
+                                    $data2[] = $row['count'];
+                                    $labels2[] = $statusLabel;
+                                }
+                            }
+                            ?>
+                            <canvas id="statusChart"></canvas>
+                            <script>
+                                var ctx2 = document.getElementById('statusChart').getContext('2d');
+                                var chart2 = new Chart(ctx2, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: <?php echo json_encode($labels2); ?>,
+                                        datasets: [{
+                                            label: 'eDIVI-Protokolle',
+                                            data: <?php echo json_encode($data2); ?>,
+                                            backgroundColor: 'rgba(255, 164, 47, .7)', // Example color
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                                precision: 0
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col bg-sh-gray px-auto">
+                            <?php
+                            $query = "SELECT dienstgrad, COUNT(*) as count FROM personal_profile GROUP BY dienstgrad";
+                            $result = $conn->query($query);
+
+                            // Create empty arrays to store the data
+                            $data = [];
+                            $labels = [];
+
+                            $dienstgrade = [
+                                0 => "Angestellte/-r",
+                                1 => "BMA",
+                                2 => "BM",
+                                3 => "OBM",
+                                4 => "HBM",
+                                5 => "HBMZ",
+                                6 => "BI",
+                                7 => "OBI",
+                                8 => "BAM",
+                                9 => "BAR",
+                                10 => "BOAR",
+                                11 => "BR",
+                                12 => "OBR",
+                                13 => "BD",
+                                14 => "LBD",
+                            ];
+
+                            // Process the query result
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    $rank = $row['dienstgrad'];
+                                    $rankLabel = isset($dienstgrade[$rank]) ? $dienstgrade[$rank] : 'Unbekannt';
+
+                                    $data[] = $row['count'];
+                                    $labels[] = $rankLabel;
+                                }
+                            }
+
+                            ?>
+                            <canvas id="rankChart"></canvas>
+
+                            <script>
+                                var ctx = document.getElementById('rankChart').getContext('2d');
+                                var chart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: <?php echo json_encode($labels); ?>,
+                                        datasets: [{
+                                            label: 'Mitarbeiter pro Dienstgrad',
+                                            data: <?php echo json_encode($data); ?>,
+                                            backgroundColor: 'rgba(212, 0, 75, .7)', // Example color
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                                precision: 0
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

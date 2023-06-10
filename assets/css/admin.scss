@@ -94,6 +94,7 @@
 
   &.active {
     font-weight: bold;
+    color: var(--white) !important;
     background-color: var(--sh-red);
     border-top: 4px solid var(--sh-red-dimmed);
     border-radius: 5px;
@@ -161,6 +162,11 @@
   .dropzone {
     background: var(--bs-tertiary-bg) !important;
     border-color: var(--sh-red);
+  }
+
+  #startpage .col.bg-sh-gray,
+  #startpage .col-6.bg-sh-gray {
+    background-color: #212529 !important;
   }
 }
 
