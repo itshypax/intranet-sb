@@ -283,7 +283,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                 echo "<td><span style='display:none'>" . $row['sendezeit'] . "</span>" . $date . "</td>";
                                 echo "<td>" . $status . "</td>";
                                 if ($edview || $admincheck) {
-                                    echo "<td><a title='Protokoll ansehen' href='/admin/edivi//protokoll/=" . $row['id'] . "' class='btn btn-sm btn-primary'><i class='fa-solid fa-eye'></i></a></td>";
+                                    echo "<td><a title='Protokoll ansehen' href='/admin/edivi/protokoll/" . $row['id'] . "' class='btn btn-sm btn-primary'><i class='fa-solid fa-eye'></i></a></td>";
                                 } else {
                                     echo "<td></td>";
                                 }
