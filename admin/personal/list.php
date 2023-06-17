@@ -288,11 +288,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                     echo " <span class='badge bg-warning'>" . $rdqualtext . "</span></td>";
                                 }
                                 echo "<td><span style='display:none'>" . $row['einstdatum'] . "</span>" . $einstellungsdatum . "</td>";
-                                if ($peredit || $admincheck) {
-                                    echo "<td><a href='/admin/personal/profile.php?id=" . $row['id'] . "' class='btn btn-sm btn-primary'>Bearbeiten</a></td>";
-                                } else {
-                                    echo "<td></td>";
-                                }
+                                echo "<td><a href='/admin/personal/profile.php?id=" . $row['id'] . "' class='btn btn-sm btn-primary'>Ansehen</a></td>";
                                 echo "</tr>";
                             }
                             ?>

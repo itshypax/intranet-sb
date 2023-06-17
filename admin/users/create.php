@@ -16,6 +16,9 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     $username = $_REQUEST['username'];
     $fullname = $_REQUEST['fullname'];
     $aktenid = $_REQUEST['aktenid'];
+    if ($aktenid == 0) {
+        $aktenid = NULL;
+    }
     $password = password_hash($_REQUEST['password'], PASSWORD_DEFAULT);
     $selected_permissions = $_POST['permissions'];
     $permissions_json = json_encode($selected_permissions);

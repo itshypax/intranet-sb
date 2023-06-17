@@ -750,7 +750,7 @@ if (isset($_POST['new'])) {
                                     <div class="btn btn-secondary mb-2" style="border-radius:0;max-width:80%;width:80%" data-bs-toggle="modal" data-bs-target="#modalRDQuali">RD Qualifikationen einsehen</div>
                                     <div class="btn btn-secondary mb-2" style="border-radius:0;max-width:80%;width:80%" data-bs-toggle="modal" data-bs-target="#modalFDQuali">Fachdienste einsehen</div>
 
-                                    <?php if ($canEdit) { ?>
+                                    <?php if ($canView) { ?>
                                         <div class="btn btn-primary mb-2" style="border-radius:0;max-width:80%;width:80%" data-bs-toggle="modal" data-bs-target="#modalNewComment">Notiz anlegen</div>
                                     <?php } ?>
                                     <?php if ($admincheck || $perdoku) { ?>
