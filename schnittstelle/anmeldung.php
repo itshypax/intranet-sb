@@ -73,7 +73,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     <meta property="og:description" content="Intranet/Verwaltungsportal der Hansestadt Stettbeck" />
 </head>
 
-<body style="background-color: #ebf4ff;">
+<body style="background-color: #ebf4ff; overflow-x:hidden;">
     <form name="form" method="post" action="">
         <input type="hidden" name="new" value="1" />
         <div class="container-fluid bg-secondary text-light py-1">

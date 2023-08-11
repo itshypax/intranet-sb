@@ -37,7 +37,7 @@ date_default_timezone_set('Europe/Berlin');
     <meta property="og:description" content="Intranet/Verwaltungsportal der Hansestadt Stettbeck" />
 </head>
 
-<body style="background-color: #293241;">
+<body style="background-color: #293241; overflow-x:hidden;">
     <div class="row" style="background-color: #181D26;">
         <div class="col text-center text-light pt-3 pb-2">
             <h4>Patienten-Anmeldungen durch Rettungsdienst</h4>
