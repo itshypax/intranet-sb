@@ -2,6 +2,7 @@
 session_start();
 
 include '../assets/php/mysql-con.php';
+date_default_timezone_set('Europe/Berlin');
 
 if (isset($_POST['new']) && $_POST['new'] == 1) {
     // TRANSPORTDATEN
@@ -338,14 +339,23 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
 
             addTimeButtons.forEach(button => {
                 button.addEventListener("click", function(event) {
-                    event.preventDefault(); // Prevent the default form submission
+                    event.preventDefault();
 
                     const timeValueToAdd = parseInt(button.getAttribute("data-time-value"));
                     const currentTime = new Date();
 
+                    // Add the specified minutes to the current time
                     currentTime.setMinutes(currentTime.getMinutes() + timeValueToAdd);
 
-                    const formattedTime = currentTime.toISOString().substr(11, 5);
+                    // Options for formatting the time in German locale
+                    const options = {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        timeZone: "Europe/Berlin" // German timezone
+                    };
+
+                    // Get the formatted time in German locale and timezone
+                    const formattedTime = currentTime.toLocaleTimeString("de-DE", options);
 
                     ankunftzeitInput.value = formattedTime;
                 });
