@@ -231,9 +231,9 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                     <h1 class="mb-5">Protokollübersicht</h1>
                     <div class="my-3">
                         <?php if (!isset($_GET['view']) or $_GET['view'] != 1) { ?>
-                            <a href="?view=1" class="btn btn-secondary btn-sm">Freigegebene ausblenden</a>
+                            <a href="?view=1" class="btn btn-secondary btn-sm">Bearbeitete ausblenden</a>
                         <?php } else { ?>
-                            <a href="?view=0" class="btn btn-primary btn-sm">Freigegebene einblenden</a>
+                            <a href="?view=0" class="btn btn-primary btn-sm">Bearbeitete einblenden</a>
                         <?php } ?>
                     </div>
                     <?php if (isset($_GET['message']) && $_GET['message'] === 'error-1') { ?>
@@ -249,9 +249,10 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                     <?php } ?>
                     <table class="table table-striped" id="table-protokoll">
                         <thead>
-                            <th scope="col">Protokoll-ID</th>
-                            <th scope="col">Protokollführer</th>
+                            <th scope="col">Einsatznummer</th>
+                            <th scope="col">Patient</th>
                             <th scope="col">Angelegt am</th>
+                            <th scope="col">Protokollant</th>
                             <th scope="col">Status</th>
                             <th scope="col"></th>
                         </thead>
@@ -273,17 +274,31 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                 }
 
                                 if (isset($_GET['view']) && $_GET['view'] == 1) {
-                                    if ($row['protokoll_status'] == 2) {
+                                    if ($row['protokoll_status'] != 0 && $row['protokoll_status'] != 1) {
                                         continue;
                                     }
                                 }
+
+                                if ($row['patname'] != NULL) {
+                                    $patname = $row['patname'];
+                                } else {
+                                    $patname = "Unbekannt";
+                                }
+
+                                if ($row['enr'] != NULL) {
+                                    $enr = $row['enr'];
+                                } else {
+                                    $enr = "Unbekannt";
+                                }
+
                                 echo "<tr>";
-                                echo "<td >" . $row['id'] . "</td>";
-                                echo "<td>" . $row['pfname'] . "</td>";
+                                echo "<td >" . $enr . "</td>";
+                                echo "<td>" . $patname . "</td>";
                                 echo "<td><span style='display:none'>" . $row['sendezeit'] . "</span>" . $date . "</td>";
+                                echo "<td>" . $row['pfname'] . "</td>";
                                 echo "<td>" . $status . "</td>";
                                 if ($edview || $admincheck) {
-                                    echo "<td><a title='Protokoll ansehen' href='/admin/edivi/protokoll/" . $row['id'] . "' class='btn btn-sm btn-primary'><i class='fa-solid fa-eye'></i></a></td>";
+                                    echo "<td><a title='Protokoll ansehen' href='/admin/edivi/divi" . $row['id'] . "' class='btn btn-sm btn-primary'><i class='fa-solid fa-eye'></i></a></td>";
                                 } else {
                                     echo "<td></td>";
                                 }
@@ -340,11 +355,12 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
     <script>
         $(document).ready(function() {
             var table = $('#table-protokoll').DataTable({
+                stateSave: true,
                 paging: true,
                 lengthMenu: [10, 20, 50, 100],
                 pageLength: 20,
                 order: [
-                    [2, 'asc']
+                    [2, 'desc']
                 ],
                 columnDefs: [{
                     orderable: false,

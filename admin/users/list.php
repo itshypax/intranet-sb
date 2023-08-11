@@ -259,7 +259,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                 echo "<td>" . $row['fullname'] .  " (<strong>" . $row['username'] . "</strong>)</td>";
                                 echo "<td><span style='display:none'>" . $row['created_at'] . "</span>" . $date . "</td>";
                                 if ($usedit || $admincheck) {
-                                    echo "<td><a href='/admin/users/" . $row['id'] . "' class='btn btn-sm btn-primary'>Bearbeiten</a>";
+                                    echo "<td><a href='/admin/users/user" . $row['id'] . "' class='btn btn-sm btn-primary'>Bearbeiten</a>";
                                     if (isset($row['aktenid']) && $row['aktenid'] > 0) {
                                         echo " <a href='/admin/personal/profile.php?id=" . $row['aktenid'] . "' class='btn btn-sm btn-warning'>Profil</a>";
                                     }
@@ -320,6 +320,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
     <script>
         $(document).ready(function() {
             var table = $('#userTable').DataTable({
+                stateSave: true,
                 paging: true,
                 lengthMenu: [5, 10, 20],
                 pageLength: 10,

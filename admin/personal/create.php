@@ -300,6 +300,7 @@ if (isset($_POST['new'])) {
                                     <i class="fa-solid fa-circle-user" style="font-size:94px"></i>
                                     <?php
                                     $options = [
+                                        16 => "Ehrenamtliche/-r",
                                         0 => "Angestellte/-r",
                                         1 => "Brandmeisteranwärter/-in",
                                         2 => "Brandmeister/-in",
@@ -311,6 +312,7 @@ if (isset($_POST['new'])) {
                                         8 => "Brandamtmann/frau",
                                         9 => "Brandamtsrat/rätin",
                                         10 => "Brandoberamtsrat/rätin",
+                                        15 => "Brandratanwärter/in",
                                         11 => "Brandrat/rätin",
                                         12 => "Oberbrandrat/rätin",
                                         13 => "Branddirektor/-in",

@@ -311,6 +311,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
     <script>
         $(document).ready(function() {
             var table = $('#table-uploads').DataTable({
+                stateSave: true,
                 paging: true,
                 lengthMenu: [5, 10, 20, 50],
                 pageLength: 10,

@@ -31,6 +31,7 @@
             10 => "Schriftliche Abmahnung",
             11 => "Vorläufige Dienstenthebung",
             12 => "Dienstentfernung",
+            13 => "Außerordentliche Kündigung",
         ];
 
         // Iterate through the documents

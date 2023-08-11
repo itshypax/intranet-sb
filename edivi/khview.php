@@ -1,25 +1,10 @@
 <?php
 session_start();
-require_once '../../assets/php/permissions.php';
-if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
-    header("Location: /admin/login.php");
-} else if ($notadmincheck && !$edview) {
-    header("Location: /admin/index.php");
-}
 
-include '../../assets/php/mysql-con.php';
+include '../assets/php/mysql-con.php';
 
-$result = mysqli_query($conn, "SELECT * FROM cirs_rd_protokolle WHERE id = " . $_GET['id']) or die(mysqli_error($conn));
+$result = mysqli_query($conn, "SELECT * FROM cirs_rd_protokolle WHERE enr = " . $_GET['enr']) or die(mysqli_error($conn));
 $row = mysqli_fetch_array($result);
-
-if (isset($_POST['new']) && $_POST['new'] == 1) {
-    $bearbeiter = $_POST['bearbeiter'];
-    $protokoll_status = $_POST['protokoll_status'];
-
-    $query = "UPDATE cirs_rd_protokolle SET bearbeiter = '$bearbeiter', protokoll_status = '$protokoll_status' WHERE id = " . $_GET['id'];
-    mysqli_query($conn, $query);
-    header("Location: /admin/edivi/list.php");
-}
 
 ?>
 
@@ -665,51 +650,6 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                 </div>
             </div>
         </div>
-        <?php if ($admincheck || $ededit) { ?>
-            <!-- ------------ -->
-            <!-- PRÜFUNG -->
-            <!-- ------------ -->
-            <button title="QM-Funktionen" id="qm-quick-menu" type="button" data-bs-toggle="modal" data-bs-target="#myModal4"><i class="fa-solid fa-ballot-check"></i></button>
-            <!-- MODAL -->
-            <div class="modal fade" id="myModal4" tabindex="-1" aria-labelledby="myModalLabel4" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel4">QM-Funktionen</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row mt-2 mb-1">
-                                <div class="col-3 fw-bold">Gesichtet von</div>
-                                <div class="col"><input style="border-radius: 0 !important" type="text" name="bearbeiter" id="bearbeiter" class="w-100 form-control" value="<?= $_SESSION['cirs_user'] ?>" required></div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-3 fw-bold">Status</div>
-                                <div class="col">
-                                    <select name="protokoll_status" id="protokoll_status" class="form-select w-100" style="border-radius: 0 !important">
-                                        <option value="0" <?php echo ($row['protokoll_status'] == 0 ? 'selected' : '') ?>>Ungesehen</option>
-                                        <option value="1" <?php echo ($row['protokoll_status'] == 1 ? 'selected' : '') ?>>in Prüfung</option>
-                                        <option value="2" <?php echo ($row['protokoll_status'] == 2 ? 'selected' : '') ?>>Freigegeben</option>
-                                        <option value="3" <?php echo ($row['protokoll_status'] == 3 ? 'selected' : '') ?>>Ungenügend</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-3 fw-bold">Bemerkung</div>
-                                <div class="col">
-                                    <textarea name="qmkommentar" id="qmkommentar" rows="5" class="w-100" style="resize: none"><?= $row['qmkommentar'] ?></textarea>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
-                                <input class="btn btn-success" name="submit" type="submit" value="Speichern" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- MODAL ENDE -->
-        <?php } ?>
     </form>
     <script>
         // eDIVI Buttons

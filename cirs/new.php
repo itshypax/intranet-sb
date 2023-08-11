@@ -37,7 +37,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     $new_number = $random_number;
     // MYSQL QUERY
     mysqli_query($conn, "INSERT INTO cirs_cases (`btr_bf`, `btr_rd`, `r_mitarbeiter`, `r_fahrzeug`, `r_geraet`, `r_zivilisten`, `r_bos`, `r_sonst`, `t_beschwerde`, `t_mangel`, `t_wunsch`, `t_sonst`, `freitext`, `uniqueid`) VALUES ('$btr_bf', '$btr_rd', '$r_mitarbeiter', '$r_fahrzeug', '$r_geraet', '$r_zivilisten', '$r_bos', '$r_sonst', '$t_beschwerde', '$t_mangel', '$t_wunsch', '$t_sonst', '$freitext', '$new_number')") or die();
-    header('Location: view.php?case=' . $new_number . '');
+    header('Location: case' . $new_number . '');
 }
 
 session_start();

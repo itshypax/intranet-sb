@@ -248,6 +248,7 @@
                                 <option value="10">Schriftliche Abmahnung</option>
                                 <option value="11">Vorläufige Dienstenthebung</option>
                                 <option value="12">Dienstentfernung</option>
+                                <option value="13">Außerordentliche Kündigung</option>
                             </select>
                             <hr>
                             <div id="form-0" style="display: none;">
@@ -263,6 +264,7 @@
                                     13 => "Branddirektor/-in",
                                     12 => "Oberbrandrat/rätin",
                                     11 => "Brandrat/rätin",
+                                    15 => "Brandratanwärter/in",
                                     10 => "Brandoberamtsrat/rätin",
                                     9 => "Brandamtsrat/rätin",
                                     8 => "Brandamtmann/frau",
@@ -273,7 +275,8 @@
                                     3 => "Oberbrandmeister/-in",
                                     2 => "Brandmeister/-in",
                                     1 => "Brandmeisteranwärter/-in",
-                                    0 => "Angestellte/-r"
+                                    0 => "Angestellte/-r",
+                                    16 => "Ehrenamtliche/-r"
                                 ];
                                 ?>
                                 <label for="erhalter_rang">Neuer Dienstgrad</label>
@@ -457,7 +460,7 @@
                 form4.style.display = 'none';
                 form5.style.display = 'none';
                 form6.style.display = 'none';
-            } else if (selectedValue === '10' || selectedValue === '11' || selectedValue === '12') {
+            } else if (selectedValue === '10' || selectedValue === '11' || selectedValue === '12' || selectedValue === '13') {
                 form0.style.display = 'none';
                 form1.style.display = 'none';
                 form2.style.display = 'none';

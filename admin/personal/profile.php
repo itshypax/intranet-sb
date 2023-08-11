@@ -53,6 +53,7 @@ if (isset($_POST['new'])) {
         mysqli_stmt_close($stmt);
 
         $dienstgradMapping = array(
+            16 => "Ehrenamtliche/-r",
             0 => "Angestellte/-r",
             1 => "Brandmeisteranwärter/-in",
             2 => "Brandmeister/-in",
@@ -64,6 +65,7 @@ if (isset($_POST['new'])) {
             8 => "Brandamtmann/frau",
             9 => "Brandamtsrat/rätin",
             10 => "Brandoberamtsrat/rätin",
+            15 => "Brandratanwärter/in",
             11 => "Brandrat/rätin",
             12 => "Oberbrandrat/rätin",
             13 => "Branddirektor/-in",
@@ -297,7 +299,7 @@ if (isset($_POST['new'])) {
             mysqli_stmt_bind_param($docStmt, "iisssssii", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $erhalter_quali, $ausstelungsdatum, $ausstellerid, $profileid);
             header('Location: /dokumente/03/' . $new_number, true, 302);
             $logContent = 'Ein neues Dokument (<a href="/dokumente/03/' . $new_number . '" target="_blank">' . $new_number . '</a>) wurde erstellt.';
-        } elseif ($docType == 10 || $docType == 12) {
+        } elseif ($docType == 10 || $docType == 12 || $docType == 13) {
             $anrede = $_POST['anrede'];
             $inhalt = $_POST['inhalt'];
             $ausstelungsdatum = date('Y-m-d', strtotime($_POST['ausstelungsdatum_10']));
@@ -564,7 +566,7 @@ if (isset($_POST['new'])) {
                             <h5 class="fw-bold">Achtung!</h5>
                             Dieses Mitarbeiterprofil gehört einem Funktionsträger - dieser besitzt ein registriertes Benutzerkonto im Intranet.<br>
                             <?php if ($admincheck || $usedit) { ?>
-                                <strong>Name u. Benutzername:</strong> <a href="/admin/users/<?= $panelakte['id'] ?>" class="text-decoration-none"><?= $panelakte['fullname'] ?> (<?= $panelakte['username'] ?>)</a>
+                                <strong>Name u. Benutzername:</strong> <a href="/admin/users/user<?= $panelakte['id'] ?>" class="text-decoration-none"><?= $panelakte['fullname'] ?> (<?= $panelakte['username'] ?>)</a>
                             <?php } else { ?>
                                 <strong>Name u. Benutzername:</strong> <?= $panelakte['fullname'] ?> (<?= $panelakte['username'] ?>)
                             <?php } ?>
@@ -598,6 +600,7 @@ if (isset($_POST['new'])) {
                                 }
 
                                 $dienstgradMapping = array(
+                                    16 => "Ehrenamtliche/-r",
                                     0 => "Angestellte/-r",
                                     1 => "Brandmeisteranwärter/-in",
                                     2 => "Brandmeister/-in",
@@ -609,6 +612,7 @@ if (isset($_POST['new'])) {
                                     8 => "Brandamtmann/frau",
                                     9 => "Brandamtsrat/rätin",
                                     10 => "Brandoberamtsrat/rätin",
+                                    15 => "Brandratanwärter/in",
                                     11 => "Brandrat/rätin",
                                     12 => "Oberbrandrat/rätin",
                                     13 => "Branddirektor/-in",
@@ -626,6 +630,7 @@ if (isset($_POST['new'])) {
                                     8 => '/assets/img/dienstgrade/bf/8.png',
                                     9 => '/assets/img/dienstgrade/bf/9.png',
                                     10 => '/assets/img/dienstgrade/bf/10.png',
+                                    15 => '/assets/img/dienstgrade/bf/15.png',
                                     11 => '/assets/img/dienstgrade/bf/11.png',
                                     12 => '/assets/img/dienstgrade/bf/12.png',
                                     13 => '/assets/img/dienstgrade/bf/13.png',

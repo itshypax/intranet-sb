@@ -280,11 +280,11 @@ if ($notadmincheck && !$cteam) {
                                         }
                                     }
                                     if ($row['cirs_status'] == 0) {
-                                        echo "<tr style='--bs-table-striped-bg:rgba(255,0,0,.05);--bs-table-bg:rgba(255,0,0,.05)'><td>" . $row['uniqueid'] . "</td><td>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td><span style='display:none'>" . $row['time_added'] . "</span>" . $date . "</td><td><a class='btn btn-sh-blue btn-sm' href='/admin/cirs/fall/" . $row['uniqueid'] . "'>Öffnen</a></td></tr>";
+                                        echo "<tr style='--bs-table-striped-bg:rgba(255,0,0,.05);--bs-table-bg:rgba(255,0,0,.05)'><td>" . $row['uniqueid'] . "</td><td>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td><span style='display:none'>" . $row['time_added'] . "</span>" . $date . "</td><td><a class='btn btn-sh-blue btn-sm' href='/admin/cirs/case" . $row['uniqueid'] . "'>Öffnen</a></td></tr>";
                                     } else if ($row['cirs_status'] == 3 or $row['cirs_status'] == 4) {
-                                        echo "<tr style='--bs-table-striped-bg:rgba(0,255,0,.05);--bs-table-bg:rgba(0,255,0,.05)'><td>" . $row['uniqueid'] . "</td><td>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td><span style='display:none'>" . $row['time_added'] . "</span>" . $date . "</td><td><a class='btn btn-sh-blue btn-sm' href='/admin/cirs/fall/" . $row['uniqueid'] . "'>Öffnen</a></td></tr>";
+                                        echo "<tr style='--bs-table-striped-bg:rgba(0,255,0,.05);--bs-table-bg:rgba(0,255,0,.05)'><td>" . $row['uniqueid'] . "</td><td>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td><span style='display:none'>" . $row['time_added'] . "</span>" . $date . "</td><td><a class='btn btn-sh-blue btn-sm' href='/admin/cirs/case" . $row['uniqueid'] . "'>Öffnen</a></td></tr>";
                                     } else {
-                                        echo "<tr><td>" . $row['uniqueid'] . "</td><td>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td><span style='display:none'>" . $row['time_added'] . "</span>" . $date . "</td><td><a class='btn btn-sh-blue btn-sm' href='/admin/cirs/fall/" . $row['uniqueid'] . "'>Öffnen</a></td></tr>";
+                                        echo "<tr><td>" . $row['uniqueid'] . "</td><td>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td><span style='display:none'>" . $row['time_added'] . "</span>" . $date . "</td><td><a class='btn btn-sh-blue btn-sm' href='/admin/cirs/case" . $row['uniqueid'] . "'>Öffnen</a></td></tr>";
                                     }
                                 }
                             }
@@ -339,6 +339,7 @@ if ($notadmincheck && !$cteam) {
     <script>
         $(document).ready(function() {
             var table = $('#cirsTable').DataTable({
+                stateSave: true,
                 paging: true,
                 lengthMenu: [10, 20, 50, 100],
                 pageLength: 20,

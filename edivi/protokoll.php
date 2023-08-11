@@ -8,11 +8,13 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     $patname = $_POST['patname'] ?? NULL;
     $patgebdat = $_POST['patgebdat'] ?? NULL;
     $patsex = $_POST['patsex'];
+    $edatum = $_POST['edatum'];
     $ezeit = $_POST['ezeit'];
     $enr = $_POST['enr'];
     // A - ATEMWEGE
     $awfrei_1 = $_POST['awfrei_1'] >= 1 ? $_POST['awfrei_1'] : 0;
     $awfrei_2 = $_POST['awfrei_2'] >= 1 ? $_POST['awfrei_2'] : 0;
+    $awfrei_3 = $_POST['awfrei_3'] >= 1 ? $_POST['awfrei_3'] : 0;
     $awsicherung_1 = $_POST['awsicherung_1'] >= 1 ? $_POST['awsicherung_1'] : 0;
     $awsicherung_2 = $_POST['awsicherung_2'] >= 1 ? $_POST['awsicherung_2'] : 0;
     $zyanose_1 = $_POST['zyanose_1'] >= 1 ? $_POST['zyanose_1'] : 0;
@@ -68,10 +70,10 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     $nacascore = $_POST['nacascore'] >= 1 ? $_POST['nacascore'] : 0;
     $pfname =  $_POST['pfname'];
     $naname =  $_POST['naname'] ?? NULL;
-    $transportziel =  $_POST['transportziel'] ?? NULL;
+    $transportziel =  $_POST['transportziel2'] ?? NULL;
     // SQL-Query ausführen
-    $query = "INSERT INTO cirs_rd_protokolle (patname, patgebdat, patsex, ezeit, enr, awfrei_1, awfrei_2, awsicherung_1, awsicherung_2, zyanose_1, zyanose_2, o2gabe, b_symptome, b_auskult, spo2, atemfreq, etco2, c_kreislauf, rrsys, rrdias, rrmad, herzfreq, c_ekg, d_bewusstsein, d_pupillenw_1, d_pupillenw_2, d_lichtreakt_1, d_lichtreakt_2, d_gcs_1, d_gcs_2, d_gcs_3, d_ex_1, d_ex_2, d_ex_3, d_ex_4, bz, temp, v_muster_k, v_muster_k1, v_muster_t, v_muster_t1, v_muster_al, v_muster_al1, v_muster_a, v_muster_a1, v_muster_bl, v_muster_bl1, v_muster_w, v_muster_w1, medis, diagnose, anmerkungen, notfallteam, transportverw, nacascore, pfname, naname, transportziel)
-    VALUES ('$patname', '$patgebdat', '$patsex', '$ezeit', '$enr', '$awfrei_1', '$awfrei_2', '$awsicherung_1', '$awsicherung_2', '$zyanose_1', '$zyanose_2', '$o2gabe', '$b_symptome',  '$b_auskult', '$spo2', '$atemfreq', '$etco2', '$c_kreislauf', '$rrsys', '$rrdias', '$rrmad', '$herzfreq', '$c_ekg', '$d_bewusstsein', '$d_pupillenw_1', '$d_pupillenw_2', '$d_lichtreakt_1', '$d_lichtreakt_2', '$d_gcs_1', '$d_gcs_2', '$d_gcs_3', '$d_ex_1', '$d_ex_2', '$d_ex_3', '$d_ex_4', '$bz', '$temp', '$v_muster_k', '$v_muster_k1', '$v_muster_t', '$v_muster_t1', '$v_muster_al', '$v_muster_al1', '$v_muster_a', '$v_muster_a1', '$v_muster_bl', '$v_muster_bl1', '$v_muster_w', '$v_muster_w1', '$medis', '$diagnose', '$anmerkungen', '$notfallteam', '$transportverw', '$nacascore', '$pfname', '$naname', '$transportziel')";
+    $query = "INSERT INTO cirs_rd_protokolle (patname, patgebdat, patsex, edatum, ezeit, enr, awfrei_1, awfrei_2, awfrei_3, awsicherung_1, awsicherung_2, zyanose_1, zyanose_2, o2gabe, b_symptome, b_auskult, spo2, atemfreq, etco2, c_kreislauf, rrsys, rrdias, rrmad, herzfreq, c_ekg, d_bewusstsein, d_pupillenw_1, d_pupillenw_2, d_lichtreakt_1, d_lichtreakt_2, d_gcs_1, d_gcs_2, d_gcs_3, d_ex_1, d_ex_2, d_ex_3, d_ex_4, bz, temp, v_muster_k, v_muster_k1, v_muster_t, v_muster_t1, v_muster_al, v_muster_al1, v_muster_a, v_muster_a1, v_muster_bl, v_muster_bl1, v_muster_w, v_muster_w1, medis, diagnose, anmerkungen, notfallteam, transportverw, nacascore, pfname, naname, transportziel2)
+    VALUES ('$patname', '$patgebdat', '$patsex', '$edatum','$ezeit', '$enr', '$awfrei_1', '$awfrei_2', '$awfrei_3', '$awsicherung_1', '$awsicherung_2', '$zyanose_1', '$zyanose_2', '$o2gabe', '$b_symptome',  '$b_auskult', '$spo2', '$atemfreq', '$etco2', '$c_kreislauf', '$rrsys', '$rrdias', '$rrmad', '$herzfreq', '$c_ekg', '$d_bewusstsein', '$d_pupillenw_1', '$d_pupillenw_2', '$d_lichtreakt_1', '$d_lichtreakt_2', '$d_gcs_1', '$d_gcs_2', '$d_gcs_3', '$d_ex_1', '$d_ex_2', '$d_ex_3', '$d_ex_4', '$bz', '$temp', '$v_muster_k', '$v_muster_k1', '$v_muster_t', '$v_muster_t1', '$v_muster_al', '$v_muster_al1', '$v_muster_a', '$v_muster_a1', '$v_muster_bl', '$v_muster_bl1', '$v_muster_w', '$v_muster_w1', '$medis', '$diagnose', '$anmerkungen', '$notfallteam', '$transportverw', '$nacascore', '$pfname', '$naname', '$transportziel')";
     mysqli_query($conn, $query);
     header("Refresh: 0");
 }
@@ -140,7 +142,10 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                 </div>
                             </div>
                             <div class="row my-2">
-                                <div class="col-4 fw-bold">Einsatzzeit</div>
+                                <div class="col-4 fw-bold">Einsatzdatum u. -zeit</div>
+                                <div class="col">
+                                    <input type="date" name="edatum" id="edatum" class="w-100 form-control" required>
+                                </div>
                                 <div class="col">
                                     <input type="time" name="ezeit" id="ezeit" class="w-100 form-control" required>
                                 </div>
@@ -160,16 +165,20 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                             <!-- ------------ -->
                             <h6 class="bg-dark text-light text-center p-1">A - Atemwege <em>(Airway)</em></h6>
                             <div class="row my-2">
-                                <div class="col-4 fw-bold">Atemwege frei</div>
+                                <div class="col-4 fw-bold">Atemwege</div>
                                 <div class="col">
                                     <div class="row">
                                         <div class="col">
                                             <input type="checkbox" class="btn-check" id="awfrei_1" name="awfrei_1" value="1" autocomplete="off">
-                                            <label class="btn btn-sm btn-outline-dark w-100" for="awfrei_1">Ja</label>
+                                            <label class="btn btn-sm btn-outline-success w-100" for="awfrei_1">frei</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="checkbox" class="btn-check" id="awfrei_3" name="awfrei_3" value="1" autocomplete="off">
+                                            <label class="btn btn-sm btn-outline-warning w-100" for="awfrei_3">gefährdet</label>
                                         </div>
                                         <div class="col">
                                             <input type="checkbox" class="btn-check" id="awfrei_2" name="awfrei_2" value="1" autocomplete="off">
-                                            <label class="btn btn-sm btn-outline-dark w-100" for="awfrei_2">Nein</label>
+                                            <label class="btn btn-sm btn-outline-danger w-100" for="awfrei_2">verlegt</label>
                                         </div>
                                     </div>
                                 </div>
@@ -257,6 +266,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                         <option value="2">Apnoe</option>
                                         <option value="3">Schnappatmung</option>
                                         <option value="4">Andere pathol.</option>
+                                        <option value="99">nicht untersucht</option>
                                     </select>
                                 </div>
                             </div>
@@ -269,6 +279,8 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                         <option value="1">Spastik</option>
                                         <option value="2">Stridor</option>
                                         <option value="3">Rasselgeräusche</option>
+                                        <option value="4">Andere pathol.</option>
+                                        <option value="99">nicht untersucht</option>
                                     </select>
                                 </div>
                             </div>
@@ -346,6 +358,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                         <option value="7">Vorhofflimmern</option>
                                         <option value="8">Bradykardie</option>
                                         <option value="9">nicht beurteilbar</option>
+                                        <option value="99">nicht erhoben</option>
                                     </select>
                                 </div>
                             </div>
@@ -380,6 +393,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                         <option value="1">weit</option>
                                         <option value="2">mittel</option>
                                         <option value="3">eng</option>
+                                        <option value="99">n. unters.</option>
                                     </select>
                                 </div>
                                 <div class="col">
@@ -389,6 +403,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                         <option value="1">weit</option>
                                         <option value="2">mittel</option>
                                         <option value="3">eng</option>
+                                        <option value="99">n. unters.</option>
                                     </select>
                                 </div>
                             </div>
@@ -400,6 +415,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                         <option value="0">prompt</option>
                                         <option value="1">träge</option>
                                         <option value="2">keine</option>
+                                        <option value="99">n. unters.</option>
                                     </select>
                                 </div>
                                 <div class="col">
@@ -408,6 +424,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                         <option value="0">prompt</option>
                                         <option value="1">träge</option>
                                         <option value="2">keine</option>
+                                        <option value="99">n. unters.</option>
                                     </select>
                                 </div>
                             </div>
@@ -441,7 +458,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                                 <option value="0">orientiert (5)</option>
                                                 <option value="1">desorientiert (4)</option>
                                                 <option value="2">inadäquate Äußerungen (3)</option>
-                                                <option value="3">unverstädnliche Laute (2)</option>
+                                                <option value="3">unverständliche Laute (2)</option>
                                                 <option value="4">keine Reaktion (1)</option>
                                             </select>
                                         </div>
@@ -456,10 +473,10 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                         <div class="col">
                                             <select class="form-select w-100" name="d_gcs_3" id="d_gcs_3" required>
                                                 <option disabled hidden selected>---</option>
-                                                <option value="0">folg Aufforderung (6)</option>
+                                                <option value="0">folg Aufforderungt (6)</option>
                                                 <option value="1">gezielte Abwehrbewegungen (5)</option>
                                                 <option value="2">ungezielte Abwehrbewegungen (4)</option>
-                                                <option value="3">Bezgesynergismen (3)</option>
+                                                <option value="3">Beugesynergismen (3)</option>
                                                 <option value="4">Strecksynergismen (2)</option>
                                                 <option value="5">keine Reaktion (1)</option>
                                             </select>
@@ -700,7 +717,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                             <!-- ------------ -->
                             <!-- SONSTIGES -->
                             <!-- ------------ -->
-                            <h6 class="bg-dark text-light text-center p-1">Notfallsituation, Anamnese, Bemerkungen</h6>
+                            <h6 class="bg-dark text-light text-center p-1">Notfallsituation, SAMPLER(+S), Bemerkungen</h6>
                             <div class="row my-2">
                                 <div class="col">
                                     <textarea name="anmerkungen" id="anmerkungen" rows="20" class="w-100 form-control" style="resize: none"></textarea>
@@ -722,7 +739,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                             <label class="btn btn-sm btn-outline-warning w-100" for="transportverw">Transportverweigerung</label>
                                         </div>
                                         <div class="col">
-                                            <button class="btn btn-sm btn-info w-100" type="button" data-bs-toggle="modal" data-bs-target="#myModal3">NACA-Score</button>
+                                            <button class="btn btn-sm btn-info w-100" type="button" data-bs-toggle="modal" data-bs-target="#myModal3">Voranmeldung</button>
                                         </div>
                                     </div>
                                 </div>
@@ -732,46 +749,34 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="myModalLabel3">NACA-Scoring</h5>
+                                            <h5 class="modal-title" id="myModalLabel3">Voranmeldung Klinik</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="row mt-2 mb-1">
                                                 <div class="col">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" value="0" name="nacascore" id="nacascore">
+                                                        <input class="form-check-input" type="radio" value="10" name="nacascore" id="nacascore">
                                                         <label class="form-check-label" for="nacascore">
-                                                            NACA I - geringfügige Störung
+                                                            Schockraum
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" value="1" name="nacascore" id="nacascore">
+                                                        <input class="form-check-input" type="radio" value="11" name="nacascore" id="nacascore">
                                                         <label class="form-check-label" for="nacascore">
-                                                            NACA II - ambulante Abklärung
+                                                            ZNA
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" value="2" name="nacascore" id="nacascore">
+                                                        <input class="form-check-input" type="radio" value="12" name="nacascore" id="nacascore">
                                                         <label class="form-check-label" for="nacascore">
-                                                            NACA III - stationäre Behandlung
+                                                            Herzkatheter
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" value="3" name="nacascore" id="nacascore">
+                                                        <input class="form-check-input" type="radio" value="13" name="nacascore" id="nacascore">
                                                         <label class="form-check-label" for="nacascore">
-                                                            NACA IV - akute Lebensgefahr nicht auszuschließen
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" value="4" name="nacascore" id="nacascore">
-                                                        <label class="form-check-label" for="nacascore">
-                                                            NACA V - akute Lebensgefahr
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" value="5" name="nacascore" id="nacascore">
-                                                        <label class="form-check-label" for="nacascore">
-                                                            NACA VI - Reanimation
+                                                            Stroke-Unit
                                                         </label>
                                                     </div>
                                                 </div>
@@ -789,12 +794,18 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                 <div class="col"><input type="text" name="pfname" id="pfname" class="w-100 form-control" required></div>
                             </div>
                             <div class="row mt-2">
-                                <div class="col-3 fw-bold">Notarzt</div>
+                                <div class="col-3 fw-bold">Bet. RM</div>
                                 <div class="col"><input type="text" name="naname" id="naname" class="w-100 form-control"></div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-3 fw-bold">Transportziel</div>
-                                <div class="col"><input type="text" name="transportziel" id="transportziel" class="w-100 form-control"></div>
+                                <div class="col">
+                                    <select name="transportziel2" id="transportziel2" class="form-select w-100" required>
+                                        <option value="0" selected>Kein Transport</option>
+                                        <option value="1">ANEOS Klinikum</option>
+                                        <option value="2">Städtisches Klinikum</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="row mt-3 mb-2">
                                 <div class="col">

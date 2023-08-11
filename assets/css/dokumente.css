@@ -106,7 +106,8 @@ span.urkunde-important {
 .dt-6,
 .dt-10,
 .dt-11,
-.dt-12 {
+.dt-12,
+.dt-13 {
   display: none;
 }
 
@@ -139,6 +140,10 @@ body[data-page-type="11"] .dt-11 {
 }
 
 body[data-page-type="12"] .dt-12 {
+  display: block;
+}
+
+body[data-page-type="13"] .dt-13 {
   display: block;
 }
 

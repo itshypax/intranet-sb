@@ -247,6 +247,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                 $dg = $row['dienstgrad'];
 
                                 $dienstgrade = [
+                                    16 => "Ehrenamtliche/-r",
                                     0 => "Angestellte/-r",
                                     1 => "Brandmeisteranwärter/-in",
                                     2 => "Brandmeister/-in",
@@ -258,6 +259,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                     8 => "Brandamtmann/frau",
                                     9 => "Brandamtsrat/rätin",
                                     10 => "Brandoberamtsrat/rätin",
+                                    15 => "Brandratanwärter/in",
                                     11 => "Brandrat/rätin",
                                     12 => "Oberbrandrat/rätin",
                                     13 => "Branddirektor/-in",
@@ -342,6 +344,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
     <script>
         $(document).ready(function() {
             var table = $('#mitarbeiterTable').DataTable({
+                stateSave: true,
                 paging: true,
                 lengthMenu: [10, 20, 50, 100],
                 pageLength: 20,

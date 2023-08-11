@@ -256,19 +256,22 @@ include_once("../assets/php/permissions.php");
                                 } else if ($row['cirs_status'] == 2) {
                                     $cirs_state = "In Prüfung";
                                 } else if ($row['cirs_status'] == 3) {
-                                    $cirs_state = "Archiviert - Öffentlich";
+                                    $cirs_state = "Archiviert";
                                 } else if ($row['cirs_status'] == 4) {
                                     $cirs_state = "Archiviert - Privat";
                                 } else {
                                     $cirs_state = "Unbekannt";
                                 }
 
+                                $datetime = new DateTime($row['time_added']);
+                                $date = $datetime->format('d.m.Y | H:i');
+
                                 if ($row['cirs_status'] == 0) {
-                                    echo "<tr style='--bs-table-striped-bg:rgba(255,0,0,.05);--bs-table-bg:rgba(255,0,0,.05)' title='" . $row['freitext'] . "'><td>" . $row['uniqueid'] . "</td><td>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td>" . $row['time_added'] . "</td><td><a class='btn btn-sh-blue btn-sm' href='/cirs/view.php?case=" . $row['uniqueid'] . "'>Öffnen</a></td></tr>";
+                                    echo "<tr style='--bs-table-striped-bg:rgba(255,0,0,.05);--bs-table-bg:rgba(255,0,0,.05)'><td>" . $row['uniqueid'] . "</td><td data-bs-toggle='tooltip' data-bs-title='" . $row['freitext'] . "'>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td>" . $date . "</td><td><a class='btn btn-sh-blue btn-sm' href='/cirs/case" . $row['uniqueid'] . "'>Öffnen</a></td></tr>";
                                 } else if ($row['cirs_status'] == 3) {
-                                    echo "<tr style='--bs-table-striped-bg:rgba(0,255,0,.05);--bs-table-bg:rgba(0,255,0,.05)' title='" . $row['freitext'] . "'><td>" . $row['uniqueid'] . "</td><td>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td>" . $row['time_added'] . "</td><td><a class='btn btn-sh-blue btn-sm' href='/cirs/view.php?case=" . $row['uniqueid'] . "'>Öffnen</a></td></tr>";
+                                    echo "<tr style='--bs-table-striped-bg:rgba(0,255,0,.05);--bs-table-bg:rgba(0,255,0,.05)'><td>" . $row['uniqueid'] . "</td><td data-bs-toggle='tooltip' data-bs-title='" . $row['freitext'] . "'>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td>" . $date . "</td><td><a class='btn btn-sh-blue btn-sm' href='/cirs/case" . $row['uniqueid'] . "'>Öffnen</a></td></tr>";
                                 } else {
-                                    echo "<tr title='" . $row['freitext'] . "'><td>" . $row['uniqueid'] . "</td><td>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td>" . $row['time_added'] . "</td><td><a class='btn btn-sh-blue btn-sm' href='/cirs/view.php?case=" . $row['uniqueid'] . "'>Öffnen</a></td></tr>";
+                                    echo "<tr title='" . $row['freitext'] . "'><td>" . $row['uniqueid'] . "</td><td data-bs-toggle='tooltip' data-bs-title='" . $row['freitext'] . "'>" . $row['cirs_title'] . "</td><td>" . $cirs_state . "</td><td>" . $row['time_added'] . "</td><td><a class='btn btn-sh-blue btn-sm' href='/cirs/case" . $date . "'>Öffnen</a></td></tr>";
                                 }
                             }
                         } else {
@@ -280,6 +283,10 @@ include_once("../assets/php/permissions.php");
             </div>
             <div class="col"></div>
         </div>
+        <script>
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        </script>
 </body>
 
 </html>

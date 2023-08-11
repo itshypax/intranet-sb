@@ -26,6 +26,7 @@ $result2 = mysqli_query($conn, "SELECT id,fullname,aktenid FROM cirs_users WHERE
 $adata = mysqli_fetch_array($result2);
 
 $dienstgradebf = [
+    16 => "Ehrenamtliche/-r",
     0 => "Angestellte/-r",
     1 => "Brandmeisteranwärter/-in",
     2 => "Brandmeister/-in",
@@ -37,6 +38,7 @@ $dienstgradebf = [
     8 => "Brandamtmann/frau",
     9 => "Brandamtsrat/rätin",
     10 => "Brandoberamtsrat/rätin",
+    15 => "Brandratanwärter/in",
     11 => "Brandrat/rätin",
     12 => "Oberbrandrat/rätin",
     13 => "Branddirektor/-in",
@@ -72,6 +74,7 @@ $rankIcons = [
     8 => '/assets/img/dienstgrade/bf/8.png',
     9 => '/assets/img/dienstgrade/bf/9.png',
     10 => '/assets/img/dienstgrade/bf/10.png',
+    15 => '/assets/img/dienstgrade/bf/15.png',
     11 => '/assets/img/dienstgrade/bf/11.png',
     12 => '/assets/img/dienstgrade/bf/12.png',
     13 => '/assets/img/dienstgrade/bf/13.png',
@@ -83,6 +86,7 @@ $typen = [
     10 => "Schriftliche Abmahnung",
     11 => "Vorläufige Dienstenthebung",
     12 => "Dienstentfernung",
+    13 => "Außerordentliche Kündigung",
 ];
 $typtext = isset($typen[$typ]) ? $typen[$typ] : '';
 ?>
@@ -128,72 +132,79 @@ $typtext = isset($typen[$typ]) ? $typen[$typ] : '';
         <?php } else if ($row['type'] == 12) { ?>
 
             <body class="bg-secondary" data-page-amount="1" data-page-type="12">
-            <?php } else { ?>
+            <?php } else if ($row['type'] == 13) { ?>
 
-                <body class="bg-secondary" data-page-amount="1">
-                <?php } ?>
-                <div class="page-container">
-                    <div class="page shadow mx-auto mt-2 bg-light" id="page1">
-                        <div class="col-4 float-end">
-                            <img src="/assets/img/schrift_bfsb.png" alt="Schriftzug Berufsfeuerwehr Stettbeck" style="max-width:100%">
-                            <div class="my-4"></div>
-                            <p style="font-size:10pt">Datum</p>
-                            <p style="font-size:12pt;margin-top:-18px"><?= $ausstelldatum ?></p>
-                        </div>
-                        <p style="font-size:10pt">Berufsfeuerwehr Stettbeck - Hauptstadtstraße 17 - 24831 Stettbeck</p>
-                        <p><?= $anrede ?><br>
-                            <?= $row['erhalter'] ?><br>
-                            24831 Stettbeck
-                        </p>
-                        <div class="my-5"></div>
-                        <p style="font-size:15pt;font-weight:bolder" class="mb-3"><?= $typtext ?></p>
-                        <div class="letter-content">
-                            <p>Sehr
-                                <?php if ($row['anrede'] == 0) {
-                                    echo "geehrte";
-                                } else {
-                                    echo "geehrter";
-                                }
-                                ?>
-                                <?= $anrede ?> <?= $row['erhalter'] ?>,
+                <body class="bg-secondary" data-page-amount="1" data-page-type="13">
+                <?php } else { ?>
+
+                    <body class="bg-secondary" data-page-amount="1">
+                    <?php } ?>
+                    <div class="page-container">
+                        <div class="page shadow mx-auto mt-2 bg-light" id="page1">
+                            <div class="col-4 float-end">
+                                <img src="/assets/img/schrift_bfsb.png" alt="Schriftzug Berufsfeuerwehr Stettbeck" style="max-width:100%">
+                                <div class="my-4"></div>
+                                <p style="font-size:10pt">Datum</p>
+                                <p style="font-size:12pt;margin-top:-18px"><?= $ausstelldatum ?></p>
+                            </div>
+                            <p style="font-size:10pt">Berufsfeuerwehr Stettbeck - Hauptstadtstraße 17 - 24831 Stettbeck</p>
+                            <p><?= $anrede ?><br>
+                                <?= $row['erhalter'] ?><br>
+                                24831 Stettbeck
                             </p>
-                            <!-- Schriftliche Abmahnung -->
-                            <p class="dt-10">hiermit werden Sie schriftlich bezüglich der unten genannten Vorfälle abgemahnt.</p>
-                            <p class="dt-10">Sollten Sie weiterhin dienstlich auffällig werden, müssen Sie mit weiteren dienstrechtlichen Konsequenzen bis hin zur Dienstentfernung rechnen.</p>
-                            <p class="dt-10">Der Grund der Abmahnung lautet:</p>
-                            <!-- Vorläufige Dienstenthebung -->
-                            <p class="dt-11">Mit diesem Schreiben informieren wir Sie über Ihre vorläufige Dienstenthebung.</p>
-                            <p class="dt-11">Ab sofort sind Sie <?= $suspenstring ?> suspendiert. In diesem Zeitraum sind Sie von Ihren dienstlichen Pflichten entbunden.</p>
-                            <p class="dt-11">Der Grund der Suspendierung lautet:</p>
-                            <!-- Dienstentfernung -->
-                            <p class="dt-12">Mit diesem Schreiben informieren wir Sie über Ihre Entfernung aus dem Beamtendienst.</p>
-                            <p class="dt-12">Mit sofortiger Wirkung ist das Arbeitsverhältnis mit der Berufsfeuerwehr Stettbeck beendigt. Eine Wiedereinstellung ist ausgeschlossen.</p>
-                            <p class="dt-12">Der Grund der Dienstentfernung lautet:</p>
-                            <div class="reasoning border border-2 border-dark py-3 px-2">
-                                <?= $row['inhalt'] ?>
+                            <div class="my-5"></div>
+                            <p style="font-size:15pt;font-weight:bolder" class="mb-3"><?= $typtext ?></p>
+                            <div class="letter-content">
+                                <p>Sehr
+                                    <?php if ($row['anrede'] == 0) {
+                                        echo "geehrte";
+                                    } else {
+                                        echo "geehrter";
+                                    }
+                                    ?>
+                                    <?= $anrede ?> <?= $row['erhalter'] ?>,
+                                </p>
+                                <!-- Schriftliche Abmahnung -->
+                                <p class="dt-10">hiermit werden Sie schriftlich bezüglich der unten genannten Vorfälle abgemahnt.</p>
+                                <p class="dt-10">Sollten Sie weiterhin dienstlich auffällig werden, müssen Sie mit weiteren dienstrechtlichen Konsequenzen bis hin zur Dienstentfernung rechnen.</p>
+                                <p class="dt-10">Der Grund der Abmahnung lautet:</p>
+                                <!-- Vorläufige Dienstenthebung -->
+                                <p class="dt-11">Mit diesem Schreiben informieren wir Sie über Ihre vorläufige Dienstenthebung.</p>
+                                <p class="dt-11">Ab sofort sind Sie <?= $suspenstring ?> suspendiert. In diesem Zeitraum sind Sie von Ihren dienstlichen Pflichten entbunden.</p>
+                                <p class="dt-11">Der Grund der Suspendierung lautet:</p>
+                                <!-- Dienstentfernung -->
+                                <p class="dt-12">Mit diesem Schreiben informieren wir Sie über Ihre Entfernung aus dem Beamtendienst.</p>
+                                <p class="dt-12">Mit sofortiger Wirkung ist das Arbeitsverhältnis mit der Berufsfeuerwehr Stettbeck beendigt. Eine Wiedereinstellung ist ausgeschlossen.</p>
+                                <p class="dt-12">Der Grund der Dienstentfernung lautet:</p>
+                                <!-- Kündigung -->
+                                <p class="dt-13">Mit diesem Schreiben informieren wir Sie über Ihre außerordentliche Kündigung.</p>
+                                <p class="dt-13">Mit sofortiger Wirkung ist das Arbeitsverhältnis mit der Berufsfeuerwehr Stettbeck beendigt. Eine Wiedereinstellung ist ausgeschlossen. </p>
+                                <p class="dt-13">Der Grund für die Kündigung lautet:</p>
+                                <div class="reasoning border border-2 border-dark py-3 px-2">
+                                    <?= $row['inhalt'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="my-5"></div>
-                        <div class="row signatures">
-                            <div class="col">
-                                <table>
-                                    <tbody>
-                                        <tr class="text-center" style="border-bottom: 2px solid #000">
-                                            <td class="signature"><?= $lastname ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Berufsfeuerwehr Stettbeck<br><?= $rdata['fullname'] ?> | <img src="<?= $rankIcons[$bfrang] ?>" height='12px' width='auto' alt='Dienstgrad' /> <?= $dienstgrad2 ?></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="my-5"></div>
+                            <div class="row signatures">
+                                <div class="col">
+                                    <table>
+                                        <tbody>
+                                            <tr class="text-center" style="border-bottom: 2px solid #000">
+                                                <td class="signature"><?= $lastname ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Berufsfeuerwehr Stettbeck<br><?= $rdata['fullname'] ?> | <img src="<?= $rankIcons[$bfrang] ?>" height='12px' width='auto' alt='Dienstgrad' /> <?= $dienstgrad2 ?></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col"></div>
                             </div>
-                            <div class="col"></div>
-                        </div>
-                        <div class="document-styling">
-                            <img src="/assets/img/bf_strich.png" alt="BF Strich">
+                            <div class="document-styling">
+                                <img src="/assets/img/bf_strich.png" alt="BF Strich">
+                            </div>
                         </div>
                     </div>
-                </div>
-                </body>
+                    </body>
 
 </html>

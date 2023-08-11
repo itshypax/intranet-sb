@@ -7,6 +7,7 @@
 $dg = $row['dienstgrad'];
 
 $dienstgrade = [
+    16 => "Ehrenamtliche/-r",
     0 => "Angestellte/-r",
     1 => "Brandmeisteranwärter/-in",
     2 => "Brandmeister/-in",
@@ -18,6 +19,7 @@ $dienstgrade = [
     8 => "Brandamtmann/frau",
     9 => "Brandamtsrat/rätin",
     10 => "Brandoberamtsrat/rätin",
+    15 => "Brandratanwärter/in",
     11 => "Brandrat/rätin",
     12 => "Oberbrandrat/rätin",
     13 => "Branddirektor/-in",

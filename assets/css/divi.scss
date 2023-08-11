@@ -84,3 +84,18 @@ button#qm-quick-menu {
     background: var(--sh-blue);
   }
 }
+
+.form-control,
+.form-select {
+  font-family: Inconsolata !important;
+}
+
+.diviRow1,
+.diviRow2 {
+  min-height: 300px;
+}
+
+.fieldDescription {
+  display: flex;
+  align-items: center;
+}

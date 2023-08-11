@@ -355,7 +355,8 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                             $labels = [];
 
                             $dienstgrade = [
-                                0 => "Angestellte/-r",
+                                16 => "Ehrenamt",
+                                0 => "Angestellt",
                                 1 => "BMA",
                                 2 => "BM",
                                 3 => "OBM",
@@ -366,6 +367,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                 8 => "BAM",
                                 9 => "BAR",
                                 10 => "BOAR",
+                                15 => "BRA",
                                 11 => "BR",
                                 12 => "OBR",
                                 13 => "BD",
