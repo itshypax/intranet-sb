@@ -38,6 +38,20 @@ date_default_timezone_set('Europe/Berlin');
 </head>
 
 <body style="background-color: #293241; overflow-x:hidden;">
+    <button onclick="playSound();" id="soundBtn">Play</button>
+    <script type="text/javascript">
+        document.getElementById('soundBtn').style.visibility = 'hidden';
+
+        function performSound() {
+            var soundButton = document.getElementById("soundBtn");
+            soundButton.click();
+        }
+
+        function playSound() {
+            const audio = new Audio("/assets/sfx/ding2.mp3");
+            audio.play();
+        }
+    </script>
     <div class="row" style="background-color: #181D26;">
         <div class="col text-center text-light pt-3 pb-2">
             <h4>Patienten-Anmeldungen durch Rettungsdienst</h4>
@@ -45,9 +59,9 @@ date_default_timezone_set('Europe/Berlin');
     </div>
     <div class="row mx-4 mt-4" id="card-container">
         <div class="col-3">
-            <div class="card mb-3 shadow">
+            <div class="card mb-3 shadow baseCard">
                 <div class="card-body">
-                    <h4 class="card-title text-center fw-bold">Organisationseinheit - ZNA</h4>
+                    <h4 class="card-title text-center fw-bold">Organisationseinheit - ANEOS</h4>
                 </div>
             </div>
 
@@ -62,6 +76,28 @@ date_default_timezone_set('Europe/Berlin');
             $currentTime = time();
 
             $result = mysqli_query($conn, "SELECT * FROM klinik_anmeldungen");
+            $resultnumber = mysqli_num_rows($result);
+            // check table klinik_row_count if the number is equal
+            // if it is not update it
+            $result2 = mysqli_query($conn, "SELECT * FROM klinik_row_count WHERE id = 1");
+            $row2 = mysqli_fetch_array($result2);
+            if (!$result2) {
+                die("Feher in der Datenbankabfrage: " . mysqli_error($conn));
+            }
+            echo $row2['rows'];
+            echo $resultnumber;
+            if ($row2['rows'] != $resultnumber) {
+                $result2 = mysqli_query($conn, "UPDATE klinik_row_count SET `rows` = " . $resultnumber . " WHERE id = 1");
+                if (!$result2) {
+                    die("Feher in der Datenbankabfrage: " . mysqli_error($conn));
+                }
+            ?>
+                <script>
+                    performSound()
+                </script>
+            <?php
+            }
+
             while ($row = mysqli_fetch_array($result)) {
                 $timestamp = strtotime($row['timestamp']);
 
@@ -234,8 +270,24 @@ date_default_timezone_set('Europe/Berlin');
                         window.location.href = currentUrl.toString();
                     });
                 });
-            </script>
 
+                const resetCard = document.querySelector('.baseCard');
+                resetCard.addEventListener('click', () => {
+                    const currentUrl = new URL(window.location.href);
+                    currentUrl.searchParams.delete('card');
+                    window.location.href = currentUrl.toString();
+                });
+            </script>
+            <script>
+                function refreshPage() {
+                    // Get the current query parameters
+                    var queryParams = window.location.search;
+
+                    // Reload the page with the same query parameters
+                    window.location.href = window.location.pathname + queryParams;
+                }
+                setInterval(refreshPage, 15000); // Refresh every 15 seconds
+            </script>
 </body>
 
 </html>
