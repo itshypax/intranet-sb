@@ -362,6 +362,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                 3 => "OBM",
                                 4 => "HBM",
                                 5 => "HBMZ",
+                                17 => "BIA",
                                 6 => "BI",
                                 7 => "OBI",
                                 8 => "BAM",
@@ -375,16 +376,24 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                             ];
 
                             // Process the query result
+                            $temp = []; // Temporary array to hold dienstgrad => count mapping
+
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
-                                    $rank = $row['dienstgrad'];
-                                    $rankLabel = isset($dienstgrade[$rank]) ? $dienstgrade[$rank] : 'Unbekannt';
-
-                                    $data[] = $row['count'];
-                                    $labels[] = $rankLabel;
+                                    $temp[$row['dienstgrad']] = $row['count'];
                                 }
                             }
 
+                            // Custom sort order
+                            $customOrder = [16, 0, 1, 2, 3, 4, 5, 17, 6, 7, 8, 9, 10, 15, 11, 12, 13, 14];
+
+                            // Populate $data and $labels based on the custom sort order
+                            foreach ($customOrder as $rank) {
+                                if (isset($temp[$rank])) {
+                                    $data[] = $temp[$rank];
+                                    $labels[] = $dienstgrade[$rank];
+                                }
+                            }
                             ?>
                             <canvas id="rankChart"></canvas>
 

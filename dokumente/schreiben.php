@@ -33,6 +33,7 @@ $dienstgradebf = [
     3 => "Oberbrandmeister/-in",
     4 => "Hauptbrandmeister/-in",
     5 => "Hauptbrandmeister/-in mit AZ",
+    17 => "Brandinspektoranwärter/-in",
     6 => "Brandinspektor/-in",
     7 => "Oberbrandinspektor/-in",
     8 => "Brandamtmann/frau",
@@ -69,6 +70,7 @@ $rankIcons = [
     3 => '/assets/img/dienstgrade/bf/3.png',
     4 => '/assets/img/dienstgrade/bf/4.png',
     5 => '/assets/img/dienstgrade/bf/5.png',
+    17 => '/assets/img/dienstgrade/bf/17.png',
     6 => '/assets/img/dienstgrade/bf/6.png',
     7 => '/assets/img/dienstgrade/bf/7.png',
     8 => '/assets/img/dienstgrade/bf/8.png',
@@ -193,7 +195,7 @@ $typtext = isset($typen[$typ]) ? $typen[$typ] : '';
                                                 <td class="signature"><?= $lastname ?></td>
                                             </tr>
                                             <tr>
-                                                <td>Berufsfeuerwehr Stettbeck<br><?= $rdata['fullname'] ?> | <img src="<?= $rankIcons[$bfrang] ?>" height='12px' width='auto' alt='Dienstgrad' /> <?= $dienstgrad2 ?></td>
+                                                <td>Berufsfeuerwehr Stettbeck<br><?= $rdata['fullname'] ?> | <?php if (isset($rankIcons[$bfrang])) { ?><img src="<?= $rankIcons[$bfrang] ?>" height='12px' width='auto' alt='Dienstgrad' /><?php } ?> <?= $dienstgrad2 ?></td>
                                             </tr>
                                         </tbody>
                                     </table>

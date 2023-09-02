@@ -104,7 +104,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                             <div class="col-4">Klinik:</div>
                             <div class="col">
                                 <select class="form-select" name="zielklinik" id="zielklinik" required>
-                                    <option value="1" selected>ANEOS Klinikum</option>
+                                    <option value="1" selected>Universitätsklinikum Stettbeck</option>
                                 </select>
                             </div>
                         </div>
@@ -169,17 +169,17 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                         <div class="row py-2">
                             <div class="col">
                                 <input type="checkbox" class="btn-check deselect-checkbox" id="kat_1" name="kat_1" value="1" autocomplete="off">
-                                <label class="btn btn-danger w-100" for="kat_1">Sofort</label>
+                                <label class="btn btn-outline-danger w-100" for="kat_1">Sofort</label>
                             </div>
                             <div class="col">
                                 <input type="checkbox" class="btn-check deselect-checkbox" id="kat_2" name="kat_2" value="1" autocomplete="off">
-                                <label class="btn btn-warning w-100" for="kat_2">Dringend</label>
+                                <label class="btn btn-outline-warning w-100" for="kat_2">Dringend</label>
                             </div>
                         </div>
                         <div class="row py-2">
                             <div class="col">
                                 <input type="checkbox" class="btn-check deselect-checkbox" id="kat_3" name="kat_3" value="1" autocomplete="off">
-                                <label class="btn btn-success w-100" for="kat_3">Normal</label>
+                                <label class="btn btn-outline-success w-100" for="kat_3">Normal</label>
                             </div>
                             <div class="col"></div>
                         </div>
@@ -309,7 +309,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                         <h6>Einsatzdaten</h6>
                     </div>
                 </div>
-                <div class="row py-2">
+                <div class="row p-2">
                     <div class="col-4">Einsatzstichwort:</div>
                     <div class="col">
                         <select class="form-select" name="estichwort" id="estichwort" autocomplete="off" required>

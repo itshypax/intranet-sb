@@ -254,6 +254,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                     3 => "Oberbrandmeister/-in",
                                     4 => "Hauptbrandmeister/-in",
                                     5 => "Hauptbrandmeister/-in mit AZ",
+                                    17 => "Brandinspektoranwärter/-in",
                                     6 => "Brandinspektor/-in",
                                     7 => "Oberbrandinspektor/-in",
                                     8 => "Brandamtmann/frau",

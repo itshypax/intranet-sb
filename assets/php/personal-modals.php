@@ -21,10 +21,12 @@
                         $fwqualis = json_decode($row['qualifw'], true) ?? [];
                         if (!$canEdit) {
                             $qualifications = [
-                                'bm' => 'Brandmeister/-in',
-                                'sfz' => 'Sonderfahrzeugführer/-in',
-                                'gf' => 'Gruppenführer/-in',
-                                'zf' => 'Zugführer/-in'
+                                'bm' => 'B1 (Grundausbildung)',
+                                'sfz' => 'B2 (M-SFZ)',
+                                'gf' => 'B3 (Gruppenführer)',
+                                'zf' => 'B4 (Zugführer)',
+                                'b5' => 'B5 (Verbandsführer)',
+                                'b6' => 'B6 (Brandreferendar)',
                             ];
 
                             foreach ($qualifications as $key => $qualification) {
@@ -35,10 +37,46 @@
                             }
                         } elseif ($canEdit) { ?>
                             <input type="hidden" name="new" value="2" />
-                            <label><input type="checkbox" name="qualifw[]" value="bm" <?php if (in_array('bm', $fwqualis)) echo 'checked'; ?>> Brandmeister/-in</label><br>
-                            <label><input type="checkbox" name="qualifw[]" value="sfz" <?php if (in_array('sfz', $fwqualis)) echo 'checked'; ?>> Sonderfahrzeugführer/-in</label><br>
-                            <label><input type="checkbox" name="qualifw[]" value="gf" <?php if (in_array('gf', $fwqualis)) echo 'checked'; ?>> Gruppenführer/-in</label><br>
-                            <label><input type="checkbox" name="qualifw[]" value="zf" <?php if (in_array('zf', $fwqualis)) echo 'checked'; ?>> Zugführer/-in</label>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Ja/Nein</th>
+                                        <th colspan="2">Bezeichnung</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" name="qualifw[]" value="bm" <?php if (in_array('bm', $fwqualis)) echo 'checked'; ?>></td>
+                                        <td class="fw-bold">B1</td>
+                                        <td>Grundausbildung</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="qualifw[]" value="sfz" <?php if (in_array('sfz', $fwqualis)) echo 'checked'; ?>></td>
+                                        <td class="fw-bold">B2</td>
+                                        <td>Maschinist SFZ</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="qualifw[]" value="gf" <?php if (in_array('gf', $fwqualis)) echo 'checked'; ?>></td>
+                                        <td class="fw-bold">B3</td>
+                                        <td>Gruppenführer</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="qualifw[]" value="zf" <?php if (in_array('zf', $fwqualis)) echo 'checked'; ?>></td>
+                                        <td class="fw-bold">B4</td>
+                                        <td>Zugführer</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="qualifw[]" value="b5" <?php if (in_array('b5', $fwqualis)) echo 'checked'; ?>></td>
+                                        <td class="fw-bold">B5</td>
+                                        <td>Verbandsführer</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="qualifw[]" value="b6" <?php if (in_array('b6', $fwqualis)) echo 'checked'; ?>></td>
+                                        <td class="fw-bold">B6</td>
+                                        <td>Brandreferendar</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         <?php } ?>
                     </div>
                 </div>
@@ -270,6 +308,7 @@
                                     8 => "Brandamtmann/frau",
                                     7 => "Oberbrandinspektor/-in",
                                     6 => "Brandinspektor/-in",
+                                    17 => "Brandinspektoranwärter/-in",
                                     5 => "Hauptbrandmeister/-in mit AZ",
                                     4 => "Hauptbrandmeister/-in",
                                     3 => "Oberbrandmeister/-in",

@@ -10,6 +10,7 @@ $options = [
     8 => "Brandamtmann/frau",
     7 => "Oberbrandinspektor/-in",
     6 => "Brandinspektor/-in",
+    17 => "Brandinspektoranwärter/-in",
     5 => "Hauptbrandmeister/-in mit AZ",
     4 => "Hauptbrandmeister/-in",
     3 => "Oberbrandmeister/-in",
