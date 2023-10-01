@@ -228,7 +228,20 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
             <div class="row">
                 <div class="col mb-5">
                     <hr class="text-light my-3">
-                    <h1 class="mb-5">Mitarbeiterübersicht</h1>
+                    <div class="row mb-5">
+                        <div class="col">
+                            <h1>Mitarbeiterübersicht</h1>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex justify-content-end">
+                                <?php if (isset($_GET['archiv'])) { ?>
+                                    <a href="/admin/personal/list.php" class="btn btn-dark">Aktive Mitarbeiter</a>
+                                <?php } else { ?>
+                                    <a href="/admin/personal/list.php?archiv" class="btn btn-dark">Archiv</a>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table table-striped" id="mitarbeiterTable">
                         <thead>
                             <th scope="col">Dienstnummer</th>
@@ -240,13 +253,19 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                         <tbody>
                             <?php
                             include '../../assets/php/mysql-con.php';
-                            $result = mysqli_query($conn, "SELECT * FROM personal_profile ORDER BY einstdatum ASC");
+                            if (isset($_GET['archiv'])) {
+                                $listQuery = "SELECT * FROM personal_profile WHERE dienstgrad = '18' ORDER BY einstdatum ASC";
+                            } else {
+                                $listQuery = "SELECT * FROM personal_profile WHERE dienstgrad <> '18' ORDER BY einstdatum ASC";
+                            }
+                            $result = mysqli_query($conn, $listQuery);
                             while ($row = mysqli_fetch_array($result)) {
                                 $einstellungsdatum = date("d.m.Y", strtotime($row['einstdatum']));
 
                                 $dg = $row['dienstgrad'];
 
                                 $dienstgrade = [
+                                    18 => "Entlassen/Archiv",
                                     16 => "Ehrenamtliche/-r",
                                     0 => "Angestellte/-r",
                                     1 => "Brandmeisteranwärter/-in",
@@ -260,6 +279,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
                                     8 => "Brandamtmann/frau",
                                     9 => "Brandamtsrat/rätin",
                                     10 => "Brandoberamtsrat/rätin",
+                                    19 => "Ärztliche/-r Leiter/-in Rettungsdienst",
                                     15 => "Brandratanwärter/in",
                                     11 => "Brandrat/rätin",
                                     12 => "Oberbrandrat/rätin",

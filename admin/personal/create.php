@@ -38,6 +38,10 @@ if (isset($_POST['new'])) {
         $telefonnr = $_POST['telefonnr'];
         $dienstnr = $_POST['dienstnr'];
         $einstdatum = $_POST['einstdatum'];
+        if ($einstdatum < '1900-01-01') {
+            // Zeige Fehlermeldung oder handle den ungültigen Wert
+            die("Das Einstellungsdatum ist ungültig.");
+        }
 
         $stmt = mysqli_prepare($conn, "INSERT INTO personal_profile (fullname, gebdatum, charakterid, dienstgrad, forumprofil, discordtag, telefonnr, dienstnr, einstdatum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "ssssssiss", $fullname, $gebdatum, $charakterid, $dienstgrad, $forumprofil, $discordtag, $telefonnr, $dienstnr, $einstdatum);
@@ -313,6 +317,7 @@ if (isset($_POST['new'])) {
                                         8 => "Brandamtmann/frau",
                                         9 => "Brandamtsrat/rätin",
                                         10 => "Brandoberamtsrat/rätin",
+                                        19 => "Ärztliche/-r Leiter/-in Rettungsdienst",
                                         15 => "Brandratanwärter/in",
                                         11 => "Brandrat/rätin",
                                         12 => "Oberbrandrat/rätin",
@@ -339,7 +344,7 @@ if (isset($_POST['new'])) {
                                             <tr>
                                                 <td class="fw-bold">Geburtsdatum</td>
                                                 <td><span class="mx-1"></span></td>
-                                                <td><input class="form-control" type="date" name="gebdatum" id="gebdatum" value="" required></td>
+                                                <td><input class="form-control" type="date" name="gebdatum" id="gebdatum" value="" min="1900-01-01" required></td>
                                             </tr>
                                             <tr>
                                                 <td class="fw-bold">Charakter-ID</td>
@@ -369,7 +374,7 @@ if (isset($_POST['new'])) {
                                             <tr>
                                                 <td class="fw-bold">Einstellungsdatum</td>
                                                 <td><span class="mx-1"></span></td>
-                                                <td><input class="form-control" type="date" name="einstdatum" id="einstdatum" value=""></td>
+                                                <td><input class="form-control" type="date" name="einstdatum" id="einstdatum" value="" min="2022-01-01" required></td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -5,6 +5,7 @@ $options = [
     12 => "Oberbrandrat/rätin",
     11 => "Brandrat/rätin",
     15 => "Brandratanwärter/in",
+    19 => "Ärztliche/-r Leiter/-in Rettungsdienst",
     10 => "Brandoberamtsrat/rätin",
     9 => "Brandamtsrat/rätin",
     8 => "Brandamtmann/frau",
@@ -17,7 +18,8 @@ $options = [
     2 => "Brandmeister/-in",
     1 => "Brandmeisteranwärter/-in",
     0 => "Angestellte/-r",
-    16 => "Ehrenamtliche/-r"
+    16 => "Ehrenamtliche/-r",
+    18 => "Entlassen/Archiv"
 ];
 ?>
 

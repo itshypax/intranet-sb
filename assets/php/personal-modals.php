@@ -273,6 +273,8 @@
                             <input type="hidden" name="erhalter" value="<?= $row['fullname'] ?>" />
                             <input type="hidden" name="erhalter_gebdat" value="<?= $row['gebdatum'] ?>" />
                             <input type="hidden" name="ausstellerid" value="<?= $userid ?>" />
+                            <input type="hidden" name="aussteller_name" value="<?= $edituseric ?>" />
+                            <input type="hidden" name="aussteller_rang" value="<?= $editdg ?>" />
                             <input type="hidden" name="profileid" value="<?= $openedID ?>" />
                             <label for="docType">Dokumenten-Typ</label>
                             <select class="form-select mb-2" name="docType" id="docType">
@@ -303,6 +305,7 @@
                                     12 => "Oberbrandrat/rätin",
                                     11 => "Brandrat/rätin",
                                     15 => "Brandratanwärter/in",
+                                    19 => "Ärztliche/-r Leiter/-in Rettungsdienst",
                                     10 => "Brandoberamtsrat/rätin",
                                     9 => "Brandamtsrat/rätin",
                                     8 => "Brandamtmann/frau",

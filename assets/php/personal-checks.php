@@ -20,6 +20,7 @@ $dienstgrade = [
     8 => "Brandamtmann/frau",
     9 => "Brandamtsrat/rätin",
     10 => "Brandoberamtsrat/rätin",
+    19 => "Ärztliche/-r Leiter/-in Rettungsdienst",
     15 => "Brandratanwärter/in",
     11 => "Brandrat/rätin",
     12 => "Oberbrandrat/rätin",

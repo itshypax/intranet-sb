@@ -30,6 +30,8 @@ $row = mysqli_fetch_array($result);
 
 $openedID = $_GET['id'];
 $edituser = $_SESSION['cirs_user'];
+$edituseric = $_SESSION['ic_name'];
+$editdg = $_SESSION['cirs_dg'];
 
 if (isset($_POST['new'])) {
     if ($_POST['new'] == 1) {
@@ -53,6 +55,7 @@ if (isset($_POST['new'])) {
         mysqli_stmt_close($stmt);
 
         $dienstgradMapping = array(
+            18 => "Entlassen/Archiv",
             16 => "Ehrenamtliche/-r",
             0 => "Angestellte/-r",
             1 => "Brandmeisteranwärter/-in",
@@ -66,6 +69,7 @@ if (isset($_POST['new'])) {
             8 => "Brandamtmann/frau",
             9 => "Brandamtsrat/rätin",
             10 => "Brandoberamtsrat/rätin",
+            19 => "Ärztliche/-r Leiter/-in Rettungsdienst",
             15 => "Brandratanwärter/in",
             11 => "Brandrat/rätin",
             12 => "Oberbrandrat/rätin",
@@ -243,6 +247,8 @@ if (isset($_POST['new'])) {
         $erhalter = $_POST['erhalter'];
         $erhalter_gebdat =  $_POST['erhalter_gebdat'];
         $ausstellerid = $_POST['ausstellerid'];
+        $aussteller_name = $_POST['aussteller_name'];
+        $aussteller_rang = $_POST['aussteller_rang'];
         $profileid = $_POST['profileid'];
         $docType = $_POST['docType'];
 
@@ -261,16 +267,16 @@ if (isset($_POST['new'])) {
             $erhalter_rang = $_POST['erhalter_rang'];
             $ausstelungsdatum = date('Y-m-d', strtotime($_POST['ausstelungsdatum_0']));
 
-            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, erhalter_rang, ausstelungsdatum, ausstellerid, profileid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($docStmt, "iisssssii", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $erhalter_rang, $ausstelungsdatum, $ausstellerid, $profileid);
+            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, erhalter_rang, ausstelungsdatum, ausstellerid, profileid, aussteller_name, aussteller_rang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($docStmt, "iisssssiisi", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $erhalter_rang, $ausstelungsdatum, $ausstellerid, $profileid, $aussteller_name, $aussteller_rang);
             header('Location: /dokumente/02/' . $new_number, true, 302);
             $logContent = 'Ein neues Dokument (<a href="/dokumente/02/' . $new_number . '" target="_blank">' . $new_number . '</a>) wurde erstellt.';
         } elseif ($docType == 2) {
             $anrede = $_POST['anrede'];
             $ausstelungsdatum = date('Y-m-d', strtotime($_POST['ausstelungsdatum_' . $docType]));
 
-            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, ausstelungsdatum, ausstellerid, profileid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($docStmt, "iissssii", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $ausstelungsdatum, $ausstellerid, $profileid);
+            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, ausstelungsdatum, ausstellerid, profileid, aussteller_name, aussteller_rang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($docStmt, "iissssiisi", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $ausstelungsdatum, $ausstellerid, $profileid, $aussteller_name, $aussteller_rang);
             header('Location: /dokumente/02/' . $new_number, true, 302);
             $logContent = 'Ein neues Dokument (<a href="/dokumente/02/' . $new_number . '" target="_blank">' . $new_number . '</a>) wurde erstellt.';
         } elseif ($docType == 3) {
@@ -278,8 +284,8 @@ if (isset($_POST['new'])) {
             $erhalter_rang_rd_2 = $_POST['erhalter_rang_rd_2'];
             $ausstelungsdatum = date('Y-m-d', strtotime($_POST['ausstelungsdatum_' . $docType]));
 
-            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, erhalter_rang_rd, ausstelungsdatum, ausstellerid, profileid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($docStmt, "iisssssii", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $erhalter_rang_rd_2, $ausstelungsdatum, $ausstellerid, $profileid);
+            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, erhalter_rang_rd, ausstelungsdatum, ausstellerid, profileid, aussteller_name, aussteller_rang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($docStmt, "iisssssiisi", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $erhalter_rang_rd_2, $ausstelungsdatum, $ausstellerid, $profileid, $aussteller_name, $aussteller_rang);
             header('Location: /dokumente/04/' . $new_number, true, 302);
             $logContent = 'Ein neues Dokument (<a href="/dokumente/04/' . $new_number . '" target="_blank">' . $new_number . '</a>) wurde erstellt.';
         } elseif ($docType == 5) {
@@ -287,8 +293,8 @@ if (isset($_POST['new'])) {
             $erhalter_rang_rd = $_POST['erhalter_rang_rd'];
             $ausstelungsdatum = date('Y-m-d', strtotime($_POST['ausstelungsdatum_' . $docType]));
 
-            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, erhalter_rang_rd, ausstelungsdatum, ausstellerid, profileid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($docStmt, "iisssssii", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $erhalter_rang_rd, $ausstelungsdatum, $ausstellerid, $profileid);
+            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, erhalter_rang_rd, ausstelungsdatum, ausstellerid, profileid, aussteller_name, aussteller_rang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($docStmt, "iisssssiisi", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $erhalter_rang_rd, $ausstelungsdatum, $ausstellerid, $profileid, $aussteller_name, $aussteller_rang);
             header('Location: /dokumente/03/' . $new_number, true, 302);
             $logContent = 'Ein neues Dokument (<a href="/dokumente/03/' . $new_number . '" target="_blank">' . $new_number . '</a>) wurde erstellt.';
         } elseif ($docType == 6) {
@@ -296,8 +302,8 @@ if (isset($_POST['new'])) {
             $erhalter_quali = $_POST['erhalter_quali'];
             $ausstelungsdatum = date('Y-m-d', strtotime($_POST['ausstelungsdatum_' . $docType]));
 
-            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, erhalter_quali, ausstelungsdatum, ausstellerid, profileid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($docStmt, "iisssssii", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $erhalter_quali, $ausstelungsdatum, $ausstellerid, $profileid);
+            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, erhalter_quali, ausstelungsdatum, ausstellerid, profileid, aussteller_name, aussteller_rang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($docStmt, "iisssssiisi", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $erhalter_quali, $ausstelungsdatum, $ausstellerid, $profileid, $aussteller_name, $aussteller_rang);
             header('Location: /dokumente/03/' . $new_number, true, 302);
             $logContent = 'Ein neues Dokument (<a href="/dokumente/03/' . $new_number . '" target="_blank">' . $new_number . '</a>) wurde erstellt.';
         } elseif ($docType == 10 || $docType == 12 || $docType == 13) {
@@ -305,8 +311,8 @@ if (isset($_POST['new'])) {
             $inhalt = $_POST['inhalt'];
             $ausstelungsdatum = date('Y-m-d', strtotime($_POST['ausstelungsdatum_10']));
 
-            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, inhalt, ausstelungsdatum, ausstellerid, profileid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($docStmt, "iisssssii", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $inhalt, $ausstelungsdatum, $ausstellerid, $profileid);
+            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, inhalt, ausstelungsdatum, ausstellerid, profileid, aussteller_name, aussteller_rang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($docStmt, "iisssssiisi", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $inhalt, $ausstelungsdatum, $ausstellerid, $profileid, $aussteller_name, $aussteller_rang);
             header('Location: /dokumente/01/' . $new_number, true, 302);
             $logContent = 'Ein neues Dokument (<a href="/dokumente/01/' . $new_number . '" target="_blank">' . $new_number . '</a>) wurde erstellt.';
         } elseif ($docType == 11) {
@@ -315,8 +321,8 @@ if (isset($_POST['new'])) {
             $suspendtime = $_POST['suspendtime'];
             $ausstelungsdatum = date('Y-m-d', strtotime($_POST['ausstelungsdatum_10']));
 
-            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, inhalt, suspendtime, ausstelungsdatum, ausstellerid, profileid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($docStmt, "iissssssii", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $inhalt, $suspendtime, $ausstelungsdatum, $ausstellerid, $profileid);
+            $docStmt = mysqli_prepare($conn, "INSERT INTO personal_dokumente (docid, type, anrede, erhalter, erhalter_gebdat, inhalt, suspendtime, ausstelungsdatum, ausstellerid, profileid, aussteller_name, aussteller_rang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($docStmt, "iissssssiisi", $new_number, $docType, $anrede, $erhalter, $erhalter_gebdat, $inhalt, $suspendtime, $ausstelungsdatum, $ausstellerid, $profileid, $aussteller_name, $aussteller_rang);
             header('Location: /dokumente/01/' . $new_number, true, 302);
             $logContent = 'Ein neues Dokument (<a href="/dokumente/01/' . $new_number . '" target="_blank">' . $new_number . '</a>) wurde erstellt.';
         }
@@ -614,6 +620,7 @@ if (isset($_POST['new'])) {
                                     8 => "Brandamtmann/frau",
                                     9 => "Brandamtsrat/rätin",
                                     10 => "Brandoberamtsrat/rätin",
+                                    19 => "Ärztliche/-r Leiter/-in Rettungsdienst",
                                     15 => "Brandratanwärter/in",
                                     11 => "Brandrat/rätin",
                                     12 => "Oberbrandrat/rätin",
