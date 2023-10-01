@@ -7,10 +7,10 @@
     <div class="circle"></div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    window.onload = function() {
         setTimeout(function() {
             var preloader = document.querySelector('.loader');
             preloader.style.display = 'none';
-        }, 600);
-    });
+        }, 400);
+    };
 </script>
