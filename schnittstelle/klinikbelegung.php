@@ -1,4 +1,13 @@
+<?php
+// Überprüfen, ob der API-Schlüssel gesetzt ist
+$storedApiKey = "116117";  // Ersetzen Sie diesen durch Ihren tatsächlichen API-Schlüssel
 
+// Überprüfen, ob der API-Schlüssel als Query-Parameter übergeben wurde
+if (!isset($_GET['api_key']) || $_GET['api_key'] !== $storedApiKey) {
+    http_response_code(401);  // Nicht autorisiert
+    exit;  // Beenden Sie das Skript
+}
+?>
 
 <!DOCTYPE html>
 <html>

@@ -37,6 +37,10 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     $result = mysqli_query($conn, $query);
     if (!$result) {
         die("Query failed: " . mysqli_error($conn));
+    } else {
+        // Weiterleitung zur angegebenen Seite
+        header("Location: https://leitstelle.stettbeck.de/addon/remote/anmeldungsbenarichtigung.php");
+        exit(); // Beenden des Skripts nach der Weiterleitung
     }
 }
 
@@ -256,6 +260,12 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                         <label class="btn btn-ss-blue w-100" for="c_3">Laufende Reanimation</label>
                     </div>
                 </div>
+                <!-- <div class="row py-1 px-2">
+                    <div class="col">
+                        <input type="checkbox" class="btn-check" id="c_4" name="c_4" value="1" autocomplete="off">
+                        <label class="btn btn-ss-blue w-100" for="c_4">kreislaufinstabil</label>
+                    </div>
+                </div> -->
             </div>
             <div class="col border border-dark bg-ss-blue">
                 <div class="row bg-secondary text-light py-1">

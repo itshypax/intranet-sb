@@ -61,7 +61,7 @@ date_default_timezone_set('Europe/Berlin');
         <div class="col-3">
             <div class="card mb-3 shadow baseCard">
                 <div class="card-body">
-                    <h4 class="card-title text-center fw-bold">Organisationseinheit - UKSB</h4>
+                    <h4 class="card-title text-center fw-bold">Organisationseinheit - StKH</h4>
                 </div>
             </div>
 
@@ -75,11 +75,11 @@ date_default_timezone_set('Europe/Berlin');
 
             $currentTime = time();
 
-            $result = mysqli_query($conn, "SELECT * FROM klinik_anmeldungen WHERE zielklinik = 1");
+            $result = mysqli_query($conn, "SELECT * FROM klinik_anmeldungen WHERE zielklinik = 2");
             $resultnumber = mysqli_num_rows($result);
             // check table klinik_row_count if the number is equal
             // if it is not update it
-            $result2 = mysqli_query($conn, "SELECT * FROM klinik_row_count WHERE id = 1");
+            $result2 = mysqli_query($conn, "SELECT * FROM klinik_row_count WHERE id = 2");
             $row2 = mysqli_fetch_array($result2);
             if (!$result2) {
                 die("Feher in der Datenbankabfrage: " . mysqli_error($conn));
@@ -87,7 +87,7 @@ date_default_timezone_set('Europe/Berlin');
             echo $row2['rows'];
             echo $resultnumber;
             if ($row2['rows'] != $resultnumber) {
-                $result2 = mysqli_query($conn, "UPDATE klinik_row_count SET `rows` = " . $resultnumber . " WHERE id = 1");
+                $result2 = mysqli_query($conn, "UPDATE klinik_row_count SET `rows` = " . $resultnumber . " WHERE id = 2");
                 if (!$result2) {
                     die("Feher in der Datenbankabfrage: " . mysqli_error($conn));
                 }

@@ -75,7 +75,7 @@ date_default_timezone_set('Europe/Berlin');
 
             $currentTime = time();
 
-            $result = mysqli_query($conn, "SELECT * FROM klinik_anmeldungen");
+            $result = mysqli_query($conn, "SELECT * FROM klinik_anmeldungen WHERE zielklinik = 1");
             $resultnumber = mysqli_num_rows($result);
             // check table klinik_row_count if the number is equal
             // if it is not update it
