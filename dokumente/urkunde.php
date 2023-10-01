@@ -35,6 +35,7 @@ $dienstgrade = [
     8 => "Brandamtmann/frau",
     9 => "Brandamtsrat/rätin",
     10 => "Brandoberamtsrat/rätin",
+    19 => "Ärztliche/-r Leiter/-in Rettungsdienst",
     15 => "Brandratanwärter/in",
     11 => "Brandrat/rätin",
     12 => "Oberbrandrat/rätin",
@@ -65,14 +66,22 @@ $ausstelldatum = date("d.m.Y", strtotime($row['ausstelungsdatum']));
 $result2 = mysqli_query($conn, "SELECT id,fullname,aktenid FROM cirs_users WHERE id = " . $row['ausstellerid']) or die(mysqli_error($conn));
 $adata = mysqli_fetch_array($result2);
 
-$fullname = $adata['fullname'];
+if ($row['aussteller_name'] != NULL) {
+    $fullname = $row['aussteller_name'];
+} else {
+    $fullname = $adata['fullname'];
+}
 $splitname = explode(" ", $fullname);
 $lastname = end($splitname);
 
 if ($adata['aktenid'] > 0) {
     $result3 = mysqli_query($conn, "SELECT id,fullname,dienstgrad,qualird FROM personal_profile WHERE id = " . $adata['aktenid']) or die(mysqli_error($conn));
     $rdata = mysqli_fetch_array($result3);
-    $bfrang = $rdata['dienstgrad'];
+    if ($row['aussteller_rang'] != NULL) {
+        $bfrang = $row['aussteller_rang'];
+    } else {
+        $bfrang = $rdata['dienstgrad'];
+    }
     $dienstgrad2 = isset($dienstgrade[$bfrang]) ? $dienstgrade[$bfrang] : '';
 }
 
@@ -242,7 +251,7 @@ $typtext = isset($typen[$typ]) ? $typen[$typ] : '';
                                             <td class="signature"><?= $lastname ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Berufsfeuerwehr Stettbeck<br><?= $rdata['fullname'] ?> | <?php if (isset($rankIcons[$bfrang])) { ?><img src="<?= $rankIcons[$bfrang] ?>" height='12px' width='auto' alt='Dienstgrad' /><?php } ?> <?= $dienstgrad2 ?></td>
+                                            <td>Berufsfeuerwehr Stettbeck<br><?= $fullname ?> | <?php if (isset($rankIcons[$bfrang])) { ?><img src="<?= $rankIcons[$bfrang] ?>" height='12px' width='auto' alt='Dienstgrad' /><?php } ?> <?= $dienstgrad2 ?></td>
                                         </tr>
                                     </tbody>
                                 </table>

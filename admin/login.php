@@ -26,6 +26,16 @@ if (isset($_GET['login'])) {
         $_SESSION['cirs_user'] = $user['fullname'];
         $permissions = json_decode($user['permissions'], true) ?? [];
         $_SESSION['permissions'] = $permissions;
+
+        if ($user['aktenid'] != null) {
+            $statement = $pdo->prepare("SELECT * FROM personal_profile WHERE id = :id");
+            $result = $statement->execute(array('id' => $user['aktenid']));
+            $profile = $statement->fetch();
+
+            $_SESSION['cirs_dg'] = $profile['dienstgrad'];
+            $_SESSION['ic_name'] = $profile['fullname'];
+        }
+
         header('Location: /admin/index.php');
     } else {
         $errorMessage = "Benutzername oder Passwort ungültig.<br>";

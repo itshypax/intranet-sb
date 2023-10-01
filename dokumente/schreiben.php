@@ -39,16 +39,13 @@ $dienstgradebf = [
     8 => "Brandamtmann/frau",
     9 => "Brandamtsrat/rätin",
     10 => "Brandoberamtsrat/rätin",
+    19 => "Ärztliche/-r Leiter/-in Rettungsdienst",
     15 => "Brandratanwärter/in",
     11 => "Brandrat/rätin",
     12 => "Oberbrandrat/rätin",
     13 => "Branddirektor/-in",
     14 => "Leitende/-r Branddirektor/-in",
 ];
-
-$fullname = $adata['fullname'];
-$splitname = explode(" ", $fullname);
-$lastname = end($splitname);
 
 if ($row['suspendtime'] == "0000-00-00" || $row['suspendtime'] == NULL) {
     $suspenstring = "bis auf unbestimmt";
@@ -57,11 +54,23 @@ if ($row['suspendtime'] == "0000-00-00" || $row['suspendtime'] == NULL) {
     $suspenstring = "bis zum " . $suspendtime;
 }
 
+if ($row['aussteller_name'] != NULL) {
+    $fullname = $row['aussteller_name'];
+} else {
+    $fullname = $adata['fullname'];
+}
+$splitname = explode(" ", $fullname);
+$lastname = end($splitname);
+
 if ($adata['aktenid'] > 0) {
     $result3 = mysqli_query($conn, "SELECT id,fullname,dienstgrad,qualird FROM personal_profile WHERE id = " . $adata['aktenid']) or die(mysqli_error($conn));
     $rdata = mysqli_fetch_array($result3);
-    $bfrang = $rdata['dienstgrad'];
-    $dienstgrad2 = isset($dienstgradebf[$bfrang]) ? $dienstgradebf[$bfrang] : '';
+    if ($row['aussteller_rang'] != NULL) {
+        $bfrang = $row['aussteller_rang'];
+    } else {
+        $bfrang = $rdata['dienstgrad'];
+    }
+    $dienstgrad2 = isset($dienstgrade[$bfrang]) ? $dienstgrade[$bfrang] : '';
 }
 
 $rankIcons = [
@@ -195,7 +204,7 @@ $typtext = isset($typen[$typ]) ? $typen[$typ] : '';
                                                 <td class="signature"><?= $lastname ?></td>
                                             </tr>
                                             <tr>
-                                                <td>Berufsfeuerwehr Stettbeck<br><?= $rdata['fullname'] ?> | <?php if (isset($rankIcons[$bfrang])) { ?><img src="<?= $rankIcons[$bfrang] ?>" height='12px' width='auto' alt='Dienstgrad' /><?php } ?> <?= $dienstgrad2 ?></td>
+                                                <td>Berufsfeuerwehr Stettbeck<br><?= $fullname ?> | <?php if (isset($rankIcons[$bfrang])) { ?><img src="<?= $rankIcons[$bfrang] ?>" height='12px' width='auto' alt='Dienstgrad' /><?php } ?> <?= $dienstgrad2 ?></td>
                                             </tr>
                                         </tbody>
                                     </table>
