@@ -473,7 +473,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                         <div class="col">
                                             <select class="form-select w-100" name="d_gcs_3" id="d_gcs_3" required>
                                                 <option disabled hidden selected>---</option>
-                                                <option value="0">folg Aufforderungt (6)</option>
+                                                <option value="0">folgt Aufforderung (6)</option>
                                                 <option value="1">gezielte Abwehrbewegungen (5)</option>
                                                 <option value="2">ungezielte Abwehrbewegungen (4)</option>
                                                 <option value="3">Beugesynergismen (3)</option>
@@ -790,7 +790,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                             </div>
                             <!-- MODAL ENDE -->
                             <div class="row mt-3">
-                                <div class="col-3 fw-bold">Protokollführer</div>
+                                <div class="col-3 fw-bold">Transportführer</div>
                                 <div class="col"><input type="text" name="pfname" id="pfname" class="w-100 form-control" required></div>
                             </div>
                             <div class="row mt-2">
@@ -802,7 +802,7 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                                 <div class="col">
                                     <select name="transportziel2" id="transportziel2" class="form-select w-100" required>
                                         <option value="0" selected>Kein Transport</option>
-                                        <option value="1">ANEOS Klinikum</option>
+                                        <option value="1">Uniklinik SB</option>
                                         <option value="2">Städtisches Klinikum</option>
                                     </select>
                                 </div>

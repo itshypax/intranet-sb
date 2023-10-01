@@ -82,11 +82,6 @@ button#qm-quick-menu:hover {
   background: var(--sh-blue);
 }
 
-.form-control,
-.form-select {
-  font-family: Inconsolata !important;
-}
-
 .diviRow1,
 .diviRow2 {
   min-height: 300px;

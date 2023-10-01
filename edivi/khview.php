@@ -624,7 +624,7 @@ $row = mysqli_fetch_array($result);
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-3 fw-bold">Protokollführer</div>
+                                <div class="col-3 fw-bold">Transportführer</div>
                                 <div class="col"><input type="text" name="pfname" id="pfname" class="w-100 form-control" value="<?= $row['pfname'] ?>" readonly></div>
                             </div>
                             <div class="row mt-2">
@@ -637,7 +637,7 @@ $row = mysqli_fetch_array($result);
                                     <?php if (isset($row['transportziel2']) && $row['transportziel2'] != NULL) { ?>
                                         <select name="transportziel2" id="transportziel2" class="w-100 form-control" disabled autocomplete="off">
                                             <option value="0" <?php echo ($row['transportziel2'] == 0 ? 'selected' : '') ?>>Kein Transport</option>
-                                            <option value="1" <?php echo ($row['transportziel2'] == 1 ? 'selected' : '') ?>>ANEOS Klinikum</option>
+                                            <option value="1" <?php echo ($row['transportziel2'] == 1 ? 'selected' : '') ?>>Uniklinik SB</option>
                                             <option value="2" <?php echo ($row['transportziel2'] == 2 ? 'selected' : '') ?>>Städtisches Klinikum</option>
                                         </select>
                                     <?php } else { ?>
