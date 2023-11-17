@@ -1,8 +1,13 @@
 <?php
 session_start();
 require_once '../assets/php/permissions.php';
-if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
+if (!isset($_SESSION['userid']) || !isset($_SESSION['permissions'])) {
+    // Store the current page's URL in a session variable
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+
+    // Redirect the user to the login page
     header("Location: /admin/login.php");
+    exit();
 }
 
 ?>
@@ -43,6 +48,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
 <body data-page="dashboard">
     <!-- PRELOAD -->
     <?php include "../assets/php/preload.php"; ?>
+    <?php include "../assets/components/c_topnav.php"; ?>
     <!-- NAVIGATION -->
     <div class="container-fluid d-flex justify-content-center align-items-center pb-5 border-3 border-bottom border-sh-semigray" id="topLogo">
         <a class="" id="sb-logo" href="#">

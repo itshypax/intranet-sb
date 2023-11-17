@@ -153,7 +153,15 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                             <div class="row my-2">
                                 <div class="col-4 fw-bold">Einsatznummer</div>
                                 <div class="col">
-                                    <input type="text" name="enr" id="enr" class="w-100 form-control" required>
+                                    <?php if (isset($_GET['enr']) and !empty($_GET['enr'])) {
+                                    ?>
+                                        <input type="text" name="enr" id="enr" class="w-100 form-control" value="<?= $_GET['enr'] ?>" readonly>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <input type="text" name="enr" id="enr" class="w-100 form-control" required>
+                                    <?php
+                                    } ?>
                                 </div>
                             </div>
                         </div>

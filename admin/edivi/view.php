@@ -1,8 +1,13 @@
 <?php
 session_start();
 require_once '../../assets/php/permissions.php';
-if (!isset($_SESSION['userid']) && !isset($_SESSION['permissions'])) {
+if (!isset($_SESSION['userid']) || !isset($_SESSION['permissions'])) {
+    // Store the current page's URL in a session variable
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+
+    // Redirect the user to the login page
     header("Location: /admin/login.php");
+    exit();
 } else if ($notadmincheck && !$edview) {
     header("Location: /admin/index.php");
 }
