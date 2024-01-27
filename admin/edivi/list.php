@@ -265,7 +265,7 @@ if (!isset($_SESSION['userid']) || !isset($_SESSION['permissions'])) {
                         <tbody>
                             <?php
                             include '../../assets/php/mysql-con.php';
-                            $result = mysqli_query($conn, "SELECT * FROM cirs_rd_protokolle");
+                            $result = mysqli_query($conn, "SELECT * FROM cirs_rd_protokolle WHERE hidden <> 1");
                             while ($row = mysqli_fetch_array($result)) {
                                 $datetime = new DateTime($row['sendezeit']);
                                 $date = $datetime->format('d.m.Y | H:i');
@@ -274,9 +274,15 @@ if (!isset($_SESSION['userid']) || !isset($_SESSION['permissions'])) {
                                 } else if ($row['protokoll_status'] == 1) {
                                     $status = "<span title='Prüfer: " . $row['bearbeiter'] . "' class='badge bg-warning'>in Prüfung</span>";
                                 } else if ($row['protokoll_status'] == 2) {
-                                    $status = "<span title='Prüfer: " . $row['bearbeiter'] . "' class='badge bg-success'>Freigegeben</span>";
+                                    $status = "<span title='Prüfer: " . $row['bearbeiter'] . "' class='badge bg-success'>Geprüft</span>";
                                 } else {
                                     $status = "<span title='Prüfer: " . $row['bearbeiter'] . "' class='badge bg-danger'>Ungenügend</span>";
+                                }
+
+                                if ($row['freigegeben'] == 0) {
+                                    $freigabe_status = "";
+                                } else if ($row['freigegeben'] == 1) {
+                                    $freigabe_status = "<span title='Freigeber: " . $row['freigeber_name'] . "' class='badge bg-success'>F</span>";
                                 }
 
                                 if (isset($_GET['view']) && $_GET['view'] == 1) {
@@ -301,7 +307,7 @@ if (!isset($_SESSION['userid']) || !isset($_SESSION['permissions'])) {
                                 echo "<td >" . $enr . "</td>";
                                 echo "<td>" . $patname . "</td>";
                                 echo "<td><span style='display:none'>" . $row['sendezeit'] . "</span>" . $date . "</td>";
-                                echo "<td>" . $row['pfname'] . "</td>";
+                                echo "<td>" . $row['pfname'] . " " . $freigabe_status . "</td>";
                                 echo "<td>" . $status . "</td>";
                                 if ($edview || $admincheck) {
                                     echo "<td><a title='Protokoll ansehen' href='/admin/edivi/divi" . $row['id'] . "' class='btn btn-sm btn-primary'><i class='fa-solid fa-eye'></i></a></td>";

@@ -38,7 +38,7 @@ session_start();
             <div class="card px-4 py-3">
                 <form method="post">
                     <strong>Einsatznummer:</strong><br>
-                    <input class="form-control" type="text" size="40" maxlength="250" id="enrInput"><br><br>
+                    <input class="form-control" type="text" size="40" maxlength="250" id="enrInput" oninput="validateInput(this)"><br><br>
                 </form>
 
                 <button class="btn btn-primary p-3" onclick="openOrCreate()">
@@ -92,7 +92,7 @@ session_start();
             const inputValue = enrInput.value;
 
             if (inputValue.trim() === "") {
-                alert("Please enter a valid Einsatznummer.");
+                alert("Bitte gib eine gültige Einsatznummer an.");
                 return;
             }
 
@@ -111,6 +111,19 @@ session_start();
             });
         }
     </script>
+    <script>
+        function isNumber(event) {
+            // Check if the pressed key is a number (0-9) or a valid numeric character.
+            const key = event.key;
+            return /^[0-9_]+$/.test(key);
+        }
+
+        function validateInput(inputField) {
+            // Remove any non-numeric characters from the input value.
+            inputField.value = inputField.value.replace(/[^0-9_]/g, '');
+        }
+    </script>
+
 </body>
 
 </html>
