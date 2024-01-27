@@ -102,6 +102,11 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     $transportverw = $_POST['transportverw'] >= 1 ? $_POST['transportverw'] : 0;
     $nacascore = $_POST['nacascore'] >= 1 ? $_POST['nacascore'] : 0;
     $pfname =  $_POST['pfname'];
+    $fzg_transp = $_POST['fzg_transp'] ?? NULL;
+    $fzg_transp_perso = $_POST['fzg_transp_perso'] ?? NULL;
+    $fzg_na = $_POST['fzg_na'] ?? NULL;
+    $fzg_na_perso = $_POST['fzg_na_perso'] ?? NULL;
+    $fzg_sonst = $_POST['fzg_sonst'] ?? NULL;
     $naname =  $_POST['naname'] ?? NULL;
     $transportziel =  $_POST['transportziel2'] ?? NULL;
     $freigeber = $_POST['freigeber'] ?? NULL;
@@ -184,6 +189,11 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     transportverw = '$transportverw',
     nacascore = '$nacascore',
     pfname = '$pfname',
+    fzg_transp = '$fzg_transp',
+    fzg_transp_perso = '$fzg_transp_perso',
+    fzg_na = '$fzg_na',
+    fzg_na_perso = '$fzg_na_perso',
+    fzg_sonst = '$fzg_sonst',
     naname = '$naname',
     transportziel2 = '$transportziel',
     freigeber_name = '$freigeber_name',
