@@ -25,7 +25,7 @@ $ausstelldatum = date("d.m.Y", strtotime($row['ausstelungsdatum']));
 $result2 = mysqli_query($conn, "SELECT id,fullname,aktenid FROM cirs_users WHERE id = " . $row['ausstellerid']) or die(mysqli_error($conn));
 $adata = mysqli_fetch_array($result2);
 
-$dienstgradebf = [
+$dienstgrade = [
     16 => "Ehrenamtliche/-r",
     0 => "Angestellte/-r",
     1 => "Brandmeisteranwärter/-in",
@@ -79,7 +79,7 @@ $rankIcons = [
     3 => '/assets/img/dienstgrade/bf/3.png',
     4 => '/assets/img/dienstgrade/bf/4.png',
     5 => '/assets/img/dienstgrade/bf/5.png',
-    17 => '/assets/img/dienstgrade/bf/17.png',
+    17 => '/assets/img/dienstgrade/bf/17_2.png',
     6 => '/assets/img/dienstgrade/bf/6.png',
     7 => '/assets/img/dienstgrade/bf/7.png',
     8 => '/assets/img/dienstgrade/bf/8.png',
