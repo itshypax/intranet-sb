@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../assets/php/permissions.php';
+require_once '../assets/php/permissions.php';
 if (!isset($_SESSION['userid']) || !isset($_SESSION['permissions'])) {
     // Store the current page's URL in a session variable
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
@@ -10,20 +10,17 @@ if (!isset($_SESSION['userid']) || !isset($_SESSION['permissions'])) {
     exit();
 }
 
-if (!$admincheck && !$ededit) {
-    header("Location: /admin/edivi/list.php?message=error-2");
+if ($notadmincheck && !$frsrd) {
+    header("Location: /admin/users/list.php?message=error-2");
 }
 
-include '../../assets/php/mysql-con.php';
+include '../assets/php/mysql-con.php';
 
-//Abfrage der Nutzer ID vom Login
-$userid = $_SESSION['userid'];
-
-$id = $_GET['id'];
-
-$sql = "UPDATE cirs_rd_protokolle SET hidden = 1, protokoll_status = 3 WHERE id = $id";
+$hash = substr(md5(rand()), 0, 4);
+$testnr = rand(1, 2);
+$sql = "INSERT INTO cirs_frs_exams (hash, test) VALUES ('$hash', '$testnr')";
 mysqli_query($conn, $sql);
-echo "<script>window.onload = function() { window.close(); }</script>";
+header('Location: /frsrd/admin.php')
 
 ?>
 

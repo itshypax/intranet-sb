@@ -28,6 +28,7 @@
             3 => "Ausbildungsvertrag",
             5 => "Ausbildungszertifikat",
             6 => "Lehrgangszertifikat",
+            7 => "Lehrgangszertifikat (Fachdienste)",
             10 => "Schriftliche Abmahnung",
             11 => "Vorläufige Dienstenthebung",
             12 => "Dienstentfernung",
@@ -43,7 +44,7 @@
             if ($doks['type'] <= 3) {
                 $path = "/dokumente/02/" . $doks['docid'];
                 $bg = "bg-secondary";
-            } elseif ($doks['type'] == 5 || $doks['type'] == 6) {
+            } elseif ($doks['type'] == 5 || $doks['type'] == 6 || $doks['type'] == 7) {
                 $path = "/dokumente/03/" . $doks['docid'];
                 $bg = "bg-dark";
             } elseif ($doks['type'] >= 10 && $doks['type'] <= 12) {

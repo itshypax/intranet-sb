@@ -114,7 +114,7 @@ if (isset($_GET['login'])) {
             <span class="nnText">
                 <a href="https://nordnetzwerk.eu" target="blank">
                     NordNetzwerk.eu
-                    <svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 608.35 950.68">
+                    <svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 608.35 950.68">
                         <defs>
                             <style>
                                 .cls-1 {

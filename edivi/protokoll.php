@@ -91,6 +91,9 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     $v_muster_bl1 = $_POST['v_muster_bl1'];
     $v_muster_w = $_POST['v_muster_w'];
     $v_muster_w1 = $_POST['v_muster_w1'];
+    $sz_nrs = $_POST['sz_nrs'];
+    $sz_toleranz_1 = $_POST['sz_toleranz_1'];
+    $sz_toleranz_2 = $_POST['sz_toleranz_2'];
     // MEDIKAMENTE
     $medis = $_POST['medis'] ?? NULL;
     // DIAGNOSE
@@ -182,6 +185,9 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
     v_muster_bl1 = '$v_muster_bl1',
     v_muster_w = '$v_muster_w',
     v_muster_w1 = '$v_muster_w1',
+    sz_nrs = '$sz_nrs',
+    sz_toleranz_1 = '$sz_toleranz_1',
+    sz_toleranz_2 = '$sz_toleranz_2',
     medis = '$medis',
     diagnose = '$diagnose',
     anmerkungen = '$anmerkungen',
@@ -1414,6 +1420,48 @@ $prot_url = "https://intra.stettbeck.de/edivi/p-$enr";
                                     ?>
                                 </div>
                             </div>
+                            <div class="row my-2">
+                                <div class="col-4 edivi__description">Schmerzen</div>
+                                <div class="col">
+                                    <input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="11" <?php echo ($daten['sz_nrs'] == 11 ? 'checked' : '') ?>> nicht erhoben
+                                </div>
+                                <div class="col">
+                                    <input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="13" <?php echo ($daten['sz_nrs'] == 13 ? 'checked' : '') ?>> nicht beurteilbar
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-4"></div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="12" <?php echo ($daten['sz_nrs'] == 12 ? 'checked' : '') ?>> 0</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="1" <?php echo ($daten['sz_nrs'] == 1 ? 'checked' : '') ?>> 1</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="2" <?php echo ($daten['sz_nrs'] == 2 ? 'checked' : '') ?>> 2</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="3" <?php echo ($daten['sz_nrs'] == 3 ? 'checked' : '') ?>> 3</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="4" <?php echo ($daten['sz_nrs'] == 4 ? 'checked' : '') ?>> 4</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="5" <?php echo ($daten['sz_nrs'] == 5 ? 'checked' : '') ?>> 5</div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-4"></div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="6" <?php echo ($daten['sz_nrs'] == 6 ? 'checked' : '') ?>> 6</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="7" <?php echo ($daten['sz_nrs'] == 7 ? 'checked' : '') ?>> 7</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="8" <?php echo ($daten['sz_nrs'] == 8 ? 'checked' : '') ?>> 8</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="9" <?php echo ($daten['sz_nrs'] == 9 ? 'checked' : '') ?>> 9</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="10" <?php echo ($daten['sz_nrs'] == 10 ? 'checked' : '') ?>> 10</div>
+                                <div class="col"></div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-4 edivi__description"></div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="checkbox" class="btn-check" id="sz_toleranz_1" name="sz_toleranz_1" value="1" <?php echo ($daten['sz_toleranz_1'] == 1 ? 'checked' : '') ?> autocomplete="off">
+                                            <label class="btn btn-sm btn-outline-light w-100" for="sz_toleranz_1">Tolerabel</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="checkbox" class="btn-check" id="sz_toleranz_2" name="sz_toleranz_2" value="1" <?php echo ($daten['sz_toleranz_2'] == 1 ? 'checked' : '') ?> autocomplete="off">
+                                            <label class="btn btn-sm btn-outline-light w-100" for="sz_toleranz_2">Nicht tolerabel</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row edivi__box">
@@ -1530,7 +1578,7 @@ $prot_url = "https://intra.stettbeck.de/edivi/p-$enr";
                                 <div class="col-3">
                                     <?php if ($daten['fzg_transp'] == NULL) : ?>
                                         <select name="fzg_transp" id="fzg_transp" class="w-100 form-select">
-                                            <option selected value="NULL">Fzg.</option>
+                                            <option selected value="NULL">Fzg. Transp.</option>
                                             <option disabled>-- FuRw 1 --</option>
                                             <option value="10-83-01">10-83-01</option>
                                             <option value="10-83-02">10-83-02</option>
@@ -1559,6 +1607,8 @@ $prot_url = "https://intra.stettbeck.de/edivi/p-$enr";
                                             <option disabled>-- SEG --</option>
                                             <option value="42-83-01">42-83-01</option>
                                             <option value="42-83-02">42-83-02</option>
+                                            <option value="42-83-03">42-83-03</option>
+                                            <option value="42-83-04">42-83-04</option>
                                             <option value="42-90-01">42-90-01</option>
                                             <option value="42-90-02">42-90-02</option>
                                             <option value="42-90-03">42-90-03</option>
@@ -1569,7 +1619,7 @@ $prot_url = "https://intra.stettbeck.de/edivi/p-$enr";
                                         </select>
                                     <?php else : ?>
                                         <select name="fzg_transp" id="fzg_transp" class="w-100 form-select">
-                                            <option selected value="NULL">Fzg.</option>
+                                            <option selected value="NULL">Fzg. Transp.</option>
                                             <option disabled>-- FuRw 1 --</option>
                                             <option value="10-83-01" <?php echo ($daten['fzg_transp'] == "10-83-01" ? 'selected' : '') ?>>10-83-01</option>
                                             <option value="10-83-02" <?php echo ($daten['fzg_transp'] == "10-83-02" ? 'selected' : '') ?>>10-83-02</option>
@@ -1598,6 +1648,8 @@ $prot_url = "https://intra.stettbeck.de/edivi/p-$enr";
                                             <option disabled>-- SEG --</option>
                                             <option value="42-83-01" <?php echo ($daten['fzg_transp'] == "42-83-01" ? 'selected' : '') ?>>42-83-01</option>
                                             <option value="42-83-02" <?php echo ($daten['fzg_transp'] == "42-83-02" ? 'selected' : '') ?>>42-83-02</option>
+                                            <option value="42-83-03" <?php echo ($daten['fzg_transp'] == "42-83-03" ? 'selected' : '') ?>>42-83-03</option>
+                                            <option value="42-83-04" <?php echo ($daten['fzg_transp'] == "42-83-04" ? 'selected' : '') ?>>42-83-04</option>
                                             <option value="42-90-01" <?php echo ($daten['fzg_transp'] == "42-90-01" ? 'selected' : '') ?>>42-90-01</option>
                                             <option value="42-90-02" <?php echo ($daten['fzg_transp'] == "42-90-02" ? 'selected' : '') ?>>42-90-02</option>
                                             <option value="42-90-03" <?php echo ($daten['fzg_transp'] == "42-90-03" ? 'selected' : '') ?>>42-90-03</option>
@@ -1617,7 +1669,7 @@ $prot_url = "https://intra.stettbeck.de/edivi/p-$enr";
                                 <div class="col-3">
                                     <?php if ($daten['fzg_na'] == NULL) : ?>
                                         <select name="fzg_na" id="fzg_na" class="w-100 form-select">
-                                            <option selected value="NULL">Fzg.</option>
+                                            <option selected value="NULL">Fzg. NA</option>
                                             <option disabled>-- Andere --</option>
                                             <option value="01-10-01">01-10-01</option>
                                             <option value="04-82-01">04-82-01</option>
@@ -1636,7 +1688,7 @@ $prot_url = "https://intra.stettbeck.de/edivi/p-$enr";
                                         </select>
                                     <?php else : ?>
                                         <select name="fzg_na" id="fzg_na" class="w-100 form-select">
-                                            <option selected value="NULL">Fzg.</option>
+                                            <option selected value="NULL">Fzg. NA</option>
                                             <option disabled>-- Andere --</option>
                                             <option value="01-10-01" <?php echo ($daten['fzg_na'] == "01-10-01" ? 'selected' : '') ?>>01-10-01</option>
                                             <option value="04-82-01" <?php echo ($daten['fzg_na'] == "04-82-01" ? 'selected' : '') ?>>04-82-01</option>
@@ -1656,7 +1708,7 @@ $prot_url = "https://intra.stettbeck.de/edivi/p-$enr";
                                     <?php endif; ?>
                                 </div>
                                 <div class="col">
-                                    <input type="text" name="fzg_na_perso" id="fzg_na_perso" class="w-100 form-control" placeholder="Personal" value="<?= $daten['fzg_transp_perso'] ?>">
+                                    <input type="text" name="fzg_na_perso" id="fzg_na_perso" class="w-100 form-control" placeholder="Personal" value="<?= $daten['fzg_na_perso'] ?>">
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -1699,7 +1751,7 @@ $prot_url = "https://intra.stettbeck.de/edivi/p-$enr";
                                 </div>
                                 <div class="row mt-2 mb-2">
                                     <div class="col">
-                                        <button class="btn btn-dark btn-sm w-100" type="button" data-bs-toggle="modal" data-bs-target="#myModal4">Protokoll freigeben</button>
+                                        <button class="btn btn-dark btn-sm w-100" type="button" data-bs-toggle="modal" data-bs-target="#myModal4">Protokoll absenden</button>
                                     </div>
                                 </div>
                             <?php endif; ?>
@@ -1708,7 +1760,7 @@ $prot_url = "https://intra.stettbeck.de/edivi/p-$enr";
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="myModalLabel4">Protokoll freigeben</h5>
+                                            <h5 class="modal-title" id="myModalLabel4">Protokoll absenden</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -1728,7 +1780,7 @@ $prot_url = "https://intra.stettbeck.de/edivi/p-$enr";
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <input class="btn btn-success" name="submit" type="submit" value="Protokoll freigeben" />
+                                                <input class="btn btn-success" name="submit" type="submit" value="Protokoll absenden" />
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Abbrechen</button>
                                             </div>
                                         </div>

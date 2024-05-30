@@ -115,6 +115,15 @@ $prot_url = "https://intra.stettbeck.de/admin/edivi/divi" . $row['id'];
                         <div class="col">
                             Das Protokoll wurde <u>noch nicht</u> freigegben! Es kann noch bearbeitet und geändert werden!
                         </div>
+                        <div class="col-2 d-flex align-content-center justify-content-center">
+                            <?php if ($row['protokoll_status'] == 1) : ?>
+                                <div class="badge bg-warning text-dark" style="line-height: var(--bs-body-line-height); border-radius: 0;">in Prüfung</div>
+                            <?php elseif ($row['protokoll_status'] == 2) : ?>
+                                <div class="badge bg-success" style="line-height: var(--bs-body-line-height); border-radius: 0;">Geprüft</div>
+                            <?php elseif ($row['protokoll_status'] == 3) : ?>
+                                <div class="badge bg-danger" style="line-height: var(--bs-body-line-height); border-radius: 0;">Ungenügend</div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             <?php endif; ?>
@@ -1280,6 +1289,48 @@ $prot_url = "https://intra.stettbeck.de/admin/edivi/divi" . $row['id'];
                                     ?>
                                 </div>
                             </div>
+                            <div class="row my-2">
+                                <div class="col-4 edivi__description">Schmerzen</div>
+                                <div class="col">
+                                    <input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="11" <?php echo ($row['sz_nrs'] == 11 ? 'checked' : '') ?>> nicht erhoben
+                                </div>
+                                <div class="col">
+                                    <input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="13" <?php echo ($row['sz_nrs'] == 13 ? 'checked' : '') ?>> nicht beurteilbar
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-4"></div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="12" <?php echo ($row['sz_nrs'] == 12 ? 'checked' : '') ?>> 0</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="1" <?php echo ($row['sz_nrs'] == 1 ? 'checked' : '') ?>> 1</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="2" <?php echo ($row['sz_nrs'] == 2 ? 'checked' : '') ?>> 2</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="3" <?php echo ($row['sz_nrs'] == 3 ? 'checked' : '') ?>> 3</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="4" <?php echo ($row['sz_nrs'] == 4 ? 'checked' : '') ?>> 4</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="5" <?php echo ($row['sz_nrs'] == 5 ? 'checked' : '') ?>> 5</div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-4"></div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="6" <?php echo ($row['sz_nrs'] == 6 ? 'checked' : '') ?>> 6</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="7" <?php echo ($row['sz_nrs'] == 7 ? 'checked' : '') ?>> 7</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="8" <?php echo ($row['sz_nrs'] == 8 ? 'checked' : '') ?>> 8</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="9" <?php echo ($row['sz_nrs'] == 9 ? 'checked' : '') ?>> 9</div>
+                                <div class="col"><input class="form-check-input" type="radio" name="sz_nrs" id="sz_nrs" value="10" <?php echo ($row['sz_nrs'] == 10 ? 'checked' : '') ?>> 10</div>
+                                <div class="col"></div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-4 edivi__description"></div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="checkbox" class="btn-check" id="sz_toleranz_1" name="sz_toleranz_1" value="1" <?php echo ($row['sz_toleranz_1'] == 1 ? 'checked' : '') ?> autocomplete="off">
+                                            <label class="btn btn-sm btn-outline-light w-100" for="sz_toleranz_1">Tolerabel</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="checkbox" class="btn-check" id="sz_toleranz_2" name="sz_toleranz_2" value="1" <?php echo ($row['sz_toleranz_2'] == 1 ? 'checked' : '') ?> autocomplete="off">
+                                            <label class="btn btn-sm btn-outline-light w-100" for="sz_toleranz_2">Nicht tolerabel</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row edivi__box">
@@ -1402,7 +1453,7 @@ $prot_url = "https://intra.stettbeck.de/admin/edivi/divi" . $row['id'];
                                     <div class="col-3">
                                         <?php if ($row['fzg_transp'] == NULL) : ?>
                                             <select name="fzg_transp" id="fzg_transp" class="w-100 form-select">
-                                                <option selected value="NULL">Fzg.</option>
+                                                <option selected value="NULL">Fzg. Transp.</option>
                                                 <option disabled>-- FuRw 1 --</option>
                                                 <option value="10-83-01">10-83-01</option>
                                                 <option value="10-83-02">10-83-02</option>
@@ -1441,7 +1492,7 @@ $prot_url = "https://intra.stettbeck.de/admin/edivi/divi" . $row['id'];
                                             </select>
                                         <?php else : ?>
                                             <select name="fzg_transp" id="fzg_transp" class="w-100 form-select">
-                                                <option selected value="NULL">Fzg.</option>
+                                                <option selected value="NULL">Fzg. Transp.</option>
                                                 <option disabled>-- FuRw 1 --</option>
                                                 <option value="10-83-01" <?php echo ($row['fzg_transp'] == "10-83-01" ? 'selected' : '') ?>>10-83-01</option>
                                                 <option value="10-83-02" <?php echo ($row['fzg_transp'] == "10-83-02" ? 'selected' : '') ?>>10-83-02</option>
@@ -1470,6 +1521,8 @@ $prot_url = "https://intra.stettbeck.de/admin/edivi/divi" . $row['id'];
                                                 <option disabled>-- SEG --</option>
                                                 <option value="42-83-01" <?php echo ($row['fzg_transp'] == "42-83-01" ? 'selected' : '') ?>>42-83-01</option>
                                                 <option value="42-83-02" <?php echo ($row['fzg_transp'] == "42-83-02" ? 'selected' : '') ?>>42-83-02</option>
+                                                <option value="42-83-03" <?php echo ($row['fzg_transp'] == "42-83-03" ? 'selected' : '') ?>>42-83-03</option>
+                                                <option value="42-83-04" <?php echo ($row['fzg_transp'] == "42-83-04" ? 'selected' : '') ?>>42-83-04</option>
                                                 <option value="42-90-01" <?php echo ($row['fzg_transp'] == "42-90-01" ? 'selected' : '') ?>>42-90-01</option>
                                                 <option value="42-90-02" <?php echo ($row['fzg_transp'] == "42-90-02" ? 'selected' : '') ?>>42-90-02</option>
                                                 <option value="42-90-03" <?php echo ($row['fzg_transp'] == "42-90-03" ? 'selected' : '') ?>>42-90-03</option>
@@ -1489,7 +1542,7 @@ $prot_url = "https://intra.stettbeck.de/admin/edivi/divi" . $row['id'];
                                     <div class="col-3">
                                         <?php if ($row['fzg_na'] == NULL) : ?>
                                             <select name="fzg_na" id="fzg_na" class="w-100 form-select">
-                                                <option selected value="NULL">Fzg.</option>
+                                                <option selected value="NULL">Fzg. NA</option>
                                                 <option disabled>-- Andere --</option>
                                                 <option value="01-10-01">01-10-01</option>
                                                 <option value="04-82-01">04-82-01</option>
@@ -1508,7 +1561,7 @@ $prot_url = "https://intra.stettbeck.de/admin/edivi/divi" . $row['id'];
                                             </select>
                                         <?php else : ?>
                                             <select name="fzg_na" id="fzg_na" class="w-100 form-select">
-                                                <option selected value="NULL">Fzg.</option>
+                                                <option selected value="NULL">Fzg. NA</option>
                                                 <option disabled>-- Andere --</option>
                                                 <option value="01-10-01" <?php echo ($row['fzg_na'] == "01-10-01" ? 'selected' : '') ?>>01-10-01</option>
                                                 <option value="04-82-01" <?php echo ($row['fzg_na'] == "04-82-01" ? 'selected' : '') ?>>04-82-01</option>
@@ -1528,7 +1581,7 @@ $prot_url = "https://intra.stettbeck.de/admin/edivi/divi" . $row['id'];
                                         <?php endif; ?>
                                     </div>
                                     <div class="col">
-                                        <input type="text" name="fzg_na_perso" id="fzg_na_perso" class="w-100 form-control" placeholder="Personal" value="<?= $row['fzg_transp_perso'] ?>">
+                                        <input type="text" name="fzg_na_perso" id="fzg_na_perso" class="w-100 form-control" placeholder="Personal" value="<?= $row['fzg_na_perso'] ?>">
                                     </div>
                                 </div>
                                 <div class="row mt-2">

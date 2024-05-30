@@ -63,3 +63,5 @@ $usdelete = checkPermission('users_delete');
 // FILES
 $filupload = checkPermission('files_upload');
 $fillog = checkPermission('files_log');
+// SCHULE
+$frsrd = checkPermission('frs_rd');

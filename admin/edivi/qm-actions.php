@@ -144,7 +144,6 @@ $prot_url = "https://intra.stettbeck.de/admin/edivi/divi" . $row['id'];
                             </div>
                             <div class="row mt-5 mb-4">
                                 <div class="col text-center">
-                                    <a href="/admin/edivi/delete.php?id=<?= $_GET['id'] ?>" class="btn btn-danger" id="delete-button"><i class="fa-solid fa-trash fa-2xs"></i> Protokoll löschen</a>
                                     <input class="btn btn-success" name="submit" type="submit" value="Speichern" />
                                 </div>
                             </div>

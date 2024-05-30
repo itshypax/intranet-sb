@@ -7,17 +7,6 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav mx-auto">
                         <a class="nav-link" href="/admin/index.php" data-page="dashboard" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Dashboard"><i class="fa-solid fa-house"></i></a>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-page="cirs" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-brake-warning" style="margin-right:8px"></i> CIRS
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/cirs/new.php">Neue Meldung</a></li>
-                                <?php if ($cteam || $admincheck) { ?>
-                                    <li><a class="dropdown-item" href="/admin/cirs/list.php">Fallübersicht</a></li>
-                                <?php } ?>
-                            </ul>
-                        </li>
                         <?php if ($anview || $admincheck) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-page="antrag" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

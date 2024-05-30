@@ -162,7 +162,9 @@
                             $qualificationsfd = [
                                 'ils' => 'Integrierte Leitstelle',
                                 'el' => 'Einsatzleitung',
-                                'uus' => 'Umwelt & Sicherheit',
+                                'elrd' => 'Einsatzleitung RettD',
+                                'llg' => 'Lager-/Logistikgruppe',
+                                'uus' => 'Löschzug Gefahrgut',
                                 'szr' => 'Spezialrettung',
                                 'lfr' => 'Luftrettung',
                                 'kit' => 'Krisenintervention',
@@ -179,7 +181,9 @@
                             <input type="hidden" name="new" value="4" />
                             <label><input type="checkbox" name="fachdienste[]" value="ils" <?php if (in_array('ils', $fdqualis)) echo 'checked'; ?>> Integrierte Leitstelle</label><br>
                             <label><input type="checkbox" name="fachdienste[]" value="el" <?php if (in_array('el', $fdqualis)) echo 'checked'; ?>> Einsatzleitung</label><br>
-                            <label><input type="checkbox" name="fachdienste[]" value="uus" <?php if (in_array('uus', $fdqualis)) echo 'checked'; ?>> Umwelt & Sicherheit</label><br>
+                            <label><input type="checkbox" name="fachdienste[]" value="elrd" <?php if (in_array('elrd', $fdqualis)) echo 'checked'; ?>> Einsatzleitung RettD</label><br>
+                            <label><input type="checkbox" name="fachdienste[]" value="llg" <?php if (in_array('llg', $fdqualis)) echo 'checked'; ?>> Lager-/Logistikgruppe</label><br>
+                            <label><input type="checkbox" name="fachdienste[]" value="uus" <?php if (in_array('uus', $fdqualis)) echo 'checked'; ?>> Löschzug Gefahrgut</label><br>
                             <label><input type="checkbox" name="fachdienste[]" value="szr" <?php if (in_array('szr', $fdqualis)) echo 'checked'; ?>> Spezialrettung</label><br>
                             <label><input type="checkbox" name="fachdienste[]" value="lfr" <?php if (in_array('lfr', $fdqualis)) echo 'checked'; ?>> Luftrettung</label><br>
                             <label><input type="checkbox" name="fachdienste[]" value="kit" <?php if (in_array('kit', $fdqualis)) echo 'checked'; ?>> Krisenintervention</label><br>
@@ -285,6 +289,7 @@
                                 <option value="3">Ausbildungsvertrag</option>
                                 <option value="5">Ausbildungszertifikat</option>
                                 <option value="6">Lehrgangszertifikat</option>
+                                <option value="7">Lehrgangszertifikat (Fachdienste)</option>
                                 <option value="10">Schriftliche Abmahnung</option>
                                 <option value="11">Vorläufige Dienstenthebung</option>
                                 <option value="12">Dienstentfernung</option>
@@ -304,7 +309,7 @@
                                     13 => "Branddirektor/-in",
                                     12 => "Oberbrandrat/rätin",
                                     11 => "Brandrat/rätin",
-                                    15 => "Brandratanwärter/in",
+                                    15 => "Brandreferendar/in",
                                     19 => "Ärztliche/-r Leiter/-in Rettungsdienst",
                                     10 => "Brandoberamtsrat/rätin",
                                     9 => "Brandamtsrat/rätin",
@@ -378,7 +383,6 @@
                                 <?php
                                 $qoptions = [
                                     4 => 'Sonderfahrzeug-Maschinist/-in',
-                                    3 => 'ILS Disponent/-in',
                                     2 => 'Zugführer/-in',
                                     1 => 'Gruppenführer/-in',
                                     0 => 'Brandmeister/-in',
@@ -395,6 +399,35 @@
                                 </select>
                                 <label for="ausstelungsdatum_6">Ausstellungsdatum</label>
                                 <input type="date" name="ausstelungsdatum_6" id="ausstelungsdatum_6" class="form-control">
+                            </div>
+                            <div id="form-7" style="display:none">
+                                <label for="anrede">Anrede</label>
+                                <select class="form-select mb-2" name="anrede" id="anrede">
+                                    <option disabled hidden selected>Bitte wählen</option>
+                                    <option value="0">Frau</option>
+                                    <option value="1">Herr</option>
+                                </select>
+                                <?php
+                                $qoptions2 = [
+                                    9 => 'Luftrettungspilot/-in',
+                                    8 => 'HEMS-TC',
+                                    3 => 'ILS Disponent/-in',
+                                    5 => 'Helfergrundmodul (SEG)',
+                                    6 => 'SEG-Sanitäter',
+                                    7 => 'Gruppenführer-BevS',
+                                ];
+                                ?>
+                                <label for="erhalter_quali">Qualifikation</label>
+                                <select class="form-select" name="erhalter_quali" id="erhalter_quali">
+                                    <option disabled hidden selected>Bitte wählen</option>
+                                    <?php foreach ($qoptions2 as $qvalue2 => $qlabel2) : ?>
+                                        <option value="<?php echo $qvalue2; ?>">
+                                            <?php echo $qlabel2; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <label for="ausstelungsdatum_7">Ausstellungsdatum</label>
+                                <input type="date" name="ausstelungsdatum_7" id="ausstelungsdatum_7" class="form-control">
                             </div>
                             <div id="form-4" style="display:none">
                                 <label for="anrede">Anrede</label>
@@ -457,6 +490,7 @@
         const form4 = document.getElementById('form-4');
         const form5 = document.getElementById('form-5');
         const form6 = document.getElementById('form-6');
+        const form7 = document.getElementById('form-7');
 
         docTypeSelect.addEventListener('change', function() {
             const selectedValue = docTypeSelect.value;
@@ -470,6 +504,7 @@
                 form4.style.display = 'none';
                 form5.style.display = 'none';
                 form6.style.display = 'none';
+                form7.style.display = 'none';
             } else if (selectedValue === '2') {
                 form0.style.display = 'none';
                 form1.style.display = 'block';
@@ -478,6 +513,7 @@
                 form4.style.display = 'none';
                 form5.style.display = 'none';
                 form6.style.display = 'none';
+                form7.style.display = 'none';
             } else if (selectedValue === '3') {
                 form0.style.display = 'none';
                 form1.style.display = 'none';
@@ -486,6 +522,7 @@
                 form4.style.display = 'none';
                 form5.style.display = 'none';
                 form6.style.display = 'block';
+                form7.style.display = 'none';
             } else if (selectedValue === '5') {
                 form0.style.display = 'none';
                 form1.style.display = 'none';
@@ -494,6 +531,7 @@
                 form4.style.display = 'none';
                 form5.style.display = 'none';
                 form6.style.display = 'none';
+                form7.style.display = 'none';
             } else if (selectedValue === '6') {
                 form0.style.display = 'none';
                 form1.style.display = 'none';
@@ -502,6 +540,16 @@
                 form4.style.display = 'none';
                 form5.style.display = 'none';
                 form6.style.display = 'none';
+                form7.style.display = 'none';
+            } else if (selectedValue === '7') {
+                form0.style.display = 'none';
+                form1.style.display = 'none';
+                form2.style.display = 'none';
+                form3.style.display = 'none';
+                form4.style.display = 'none';
+                form5.style.display = 'none';
+                form6.style.display = 'none';
+                form7.style.display = 'block';
             } else if (selectedValue === '10' || selectedValue === '11' || selectedValue === '12' || selectedValue === '13') {
                 form0.style.display = 'none';
                 form1.style.display = 'none';

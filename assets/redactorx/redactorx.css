@@ -1254,7 +1254,7 @@
   font-size: 15px;
   cursor: pointer;
   -webkit-appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg height="10" viewBox="0 0 9 10" width="9" xmlns="http://www.w3.org/2000/svg"><path fill="rgba(0, 0, 0, .6)" d="m3.27162899.66658308.8-.70211699 4 3.51058495-.8.70211699-3.2-2.80846796-3.2 2.80846796-.8-.70211699zm0 8.59576602-3.2-2.80846795.8-.70211699 3.2 2.80846796 3.2-2.80846796.8.70211699-4 3.51058494z" /></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg height="10" viewbox="0 0 9 10" width="9" xmlns="http://www.w3.org/2000/svg"><path fill="rgba(0, 0, 0, .6)" d="m3.27162899.66658308.8-.70211699 4 3.51058495-.8.70211699-3.2-2.80846796-3.2 2.80846796-.8-.70211699zm0 8.59576602-3.2-2.80846795.8-.70211699 3.2 2.80846796 3.2-2.80846796.8.70211699-4 3.51058494z" /></svg>');
   background-repeat: no-repeat;
   background-position: right 0.65em center;
   padding-right: 28px;
