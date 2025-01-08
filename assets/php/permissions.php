@@ -1,4 +1,5 @@
 <?php
+include 'mysql-con.php';
 function retrievePermissionsFromDatabase($userId)
 {
     try {
