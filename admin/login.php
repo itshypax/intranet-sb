@@ -7,7 +7,7 @@ ini_set('session.cookie_secure', true);  // Set to true if using HTTPS, false ot
 
 session_start();
 include '../assets/php/mysql-con.php';
-$pdo = $mysql
+$pdo = $mysql;
 
 if (isset($_SESSION['userid']) && isset($_SESSION['permissions'])) {
     header('Location: /admin/index.php');
