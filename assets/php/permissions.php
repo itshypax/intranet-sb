@@ -2,7 +2,7 @@
 function retrievePermissionsFromDatabase($userId)
 {
     try {
-        $pdo = $mysql
+        $pdo = $mysql;
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $statement = $pdo->prepare("SELECT permissions FROM cirs_users WHERE id = :userId");
