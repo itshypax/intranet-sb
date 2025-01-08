@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$pdo = new PDO('mysql:host=web-snake02.native-webspace.com;dbname=hypaxna1_cirs', 'cirsmanager', '3?8h74vaO');
+include '../assets/php/mysql-con.php';
 
 if (isset($_POST['new']) && $_POST['new'] == 1) {
     $enr = $_POST['enr'];
