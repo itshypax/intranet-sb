@@ -2,7 +2,7 @@
 function retrievePermissionsFromDatabase($userId)
 {
     try {
-        $pdo = new PDO('mysql:host=web-snake02.native-webspace.com;dbname=hypaxna1_cirs', 'cirsmanager', '3?8h74vaO');
+        $pdo = $mysql
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $statement = $pdo->prepare("SELECT permissions FROM cirs_users WHERE id = :userId");
