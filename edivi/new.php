@@ -2,7 +2,7 @@
 
 session_start();
 include '../assets/php/mysql-con.php';
-$pdo = $mysql
+$pdo = $mysql;
 
 if (isset($_POST['new']) && $_POST['new'] == 1) {
     $enr = $_POST['enr'];
