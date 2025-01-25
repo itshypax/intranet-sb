@@ -6,8 +6,12 @@ ini_set('session.cookie_lifetime', 604800);  // Set the cookie lifetime (in seco
 ini_set('session.cookie_secure', true);  // Set to true if using HTTPS, false otherwise
 
 session_start();
+<<<<<<< HEAD
 include '../assets/php/mysql-con.php';
 $pdo = $mysql;
+=======
+$pdo = new PDO('mysql:host=web-snake02.native-webspace.com;dbname=hypaxna1_cirs', 'cirsmanager', '3?8h74vaO');
+>>>>>>> parent of a31b837 (Update login.php)
 
 if (isset($_SESSION['userid']) && isset($_SESSION['permissions'])) {
     header('Location: /admin/index.php');
